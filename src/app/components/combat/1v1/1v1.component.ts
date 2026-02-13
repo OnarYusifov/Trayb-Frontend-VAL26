@@ -100,13 +100,15 @@ export class OneVersusOneComponent implements OnInit {
     leftTeamDeadPlayers = computed(() => {
         const team = this.leftTeam();
         if (!team) return [];
-        return team.players.filter((p: any) => !p.isAlive);
+        const oneVsOnePlayer = this.leftPlayer();
+        return team.players.filter((p: any) => !p.isAlive && p.fullName !== oneVsOnePlayer?.fullName);
     });
 
     rightTeamDeadPlayers = computed(() => {
         const team = this.rightTeam();
         if (!team) return [];
-        return team.players.filter((p: any) => !p.isAlive);
+        const oneVsOnePlayer = this.rightPlayer();
+        return team.players.filter((p: any) => !p.isAlive && p.fullName !== oneVsOnePlayer?.fullName);
     });
 
     // Check if playercams should be shown for both players in the 1v1

@@ -174,6 +174,7 @@ const initialMatchData: IMatchData = {
     timeoutDuration: 60,
     timeoutCancellationGracePeriod: 10,
     timeoutCounter: {
+      max: 2,
       left: 2,
       right: 2,
     },
