@@ -76,7 +76,25 @@ const routes: Routes = [
   },
   {
     path: "mapban",
-    component: MapbanUiComponent,
+    loadComponent: () =>
+      import("./overlays/mapban-overlay/mapban-overlay.component").then((m) => m.MapbanUiComponent),
+  },
+  {
+    path: "playercams",
+    loadComponent: () =>
+      import("./components/combat/playercams/playercams.component").then(
+        (m) => m.PlayercamsComponent,
+      ),
+  },
+  {
+    path: "team-breakdown",
+    loadComponent: () =>
+      import("./overlays/team-breakdown/team-breakdown").then((m) => m.TeamBreakdown),
+  },
+  {
+    path: "map-breakdown",
+    loadComponent: () =>
+      import("./overlays/map-breakdown/map-breakdown").then((m) => m.MapBreakdown),
   },
 ];
 
