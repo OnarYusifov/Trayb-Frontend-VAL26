@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { MatchOverlayComponent } from "../match-overlay/match-overlay.component";
-import { DataModelService } from "../../services/dataModel.service";
+import { DataModelService, initialMatchData } from "../../services/dataModel.service";
+import { IMatchData } from "../../services/Types";
 
 @Component({
   selector: "app-testing-new",
@@ -10,12 +11,9 @@ import { DataModelService } from "../../services/dataModel.service";
 })
 export class TestingComponent implements OnInit {
   dataModel = inject(DataModelService);
-  match: any;
+  match: IMatchData = initialMatchData;
 
   ngOnInit(): void {
-    const nameOverrideMap = new Map<string, string>();
-    nameOverrideMap.set("", "");
-
     this.match = {
       groupCode: "A",
       isRanked: false,
@@ -26,6 +24,7 @@ export class TestingComponent implements OnInit {
       map: "Ascent",
       switchRound: 12,
       firstOtRound: 25,
+      attackersWon: false,
       showAliveKDA: true,
       tools: {
         seriesInfo: {
@@ -68,6 +67,7 @@ export class TestingComponent implements OnInit {
         },
         timeoutDuration: 60,
         timeoutCounter: {
+          max: 2,
           left: 2,
           right: 2,
         },
@@ -87,7 +87,7 @@ export class TestingComponent implements OnInit {
           enabledPlayers: ["FNC OO AA EE#1337", "nobii#DEBUG"],
           removeTricodes: false,
         },
-        nameOverrides: { overrides: nameOverrideMap },
+        nameOverrides: { overrides: [] },
       },
       timeoutState: {
         techPause: false,
@@ -124,6 +124,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 1,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -131,6 +133,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "Twoperator",
@@ -158,6 +161,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 0,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -165,6 +170,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "ThreeOfLife",
@@ -192,6 +198,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 1,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -199,6 +207,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "Fourcefield",
@@ -226,6 +235,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 0,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -233,6 +244,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "FIVEbyFIVE",
@@ -260,6 +272,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 0,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -267,6 +281,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
           ],
           teamName: "The Naturals",
@@ -336,6 +351,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 0,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -343,6 +360,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "BeeSting",
@@ -370,6 +388,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 1,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -377,6 +397,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "CowTipper",
@@ -404,6 +425,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 1,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -411,6 +434,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "DodoDaniel",
@@ -438,6 +462,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 1,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -445,6 +471,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
             {
               name: "Eeliminator",
@@ -472,6 +499,8 @@ export class TestingComponent implements OnInit {
               deaths: 0,
               assists: 0,
               killsThisRound: 0,
+              deathsThisRound: 0,
+              killedPlayerNames: [],
               health: 100,
               abilities: {
                 grenade: 1,
@@ -479,6 +508,7 @@ export class TestingComponent implements OnInit {
                 ability2: 0,
               },
               iconNameSuffix: "",
+              locked: false,
             },
           ],
           teamName: "The Zoologists",
@@ -537,6 +567,13 @@ export class TestingComponent implements OnInit {
         ret.roundPhase = "end";
       } else {
         ret.roundPhase = "shopping";
+        ret.teams.forEach((team) => {
+          team.players.forEach((player) => {
+            player.isAlive = true;
+            player.health = 100;
+            player.deathsThisRound = 0;
+          });
+        });
       }
       return ret;
     });
@@ -617,23 +654,6 @@ export class TestingComponent implements OnInit {
   //#endregion
 
   //#region Team button handlers
-  addPlayer(teamIndex: number) {
-    this.dataModel.match.update((v) => {
-      const ret = v;
-      const team = ret.teams[teamIndex];
-
-      return ret;
-    });
-  }
-
-  removePlayer(teamIndex: number) {
-    this.dataModel.match.update((v) => {
-      const ret = v;
-      const team = ret.teams[teamIndex];
-
-      return ret;
-    });
-  }
 
   winRound(teamIndex: number) {
     this.dataModel.match.update((v) => {
@@ -677,6 +697,8 @@ export class TestingComponent implements OnInit {
       const ret = v;
       ret.teams[teamIndex].players[playerIndex].isAlive = false;
       ret.teams[teamIndex].players[playerIndex].health = 0;
+      ret.teams[teamIndex].players[playerIndex].deaths += 1;
+      ret.teams[teamIndex].players[playerIndex].deathsThisRound += 1;
       return ret;
     });
   }
