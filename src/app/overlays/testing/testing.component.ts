@@ -82,11 +82,11 @@ export class TestingComponent implements OnInit {
           customTextEnabled: true,
           spectraWatermark: true,
         },
-        playercamsInfo: { 
-        enable: true,
-        enabledPlayers: ["FNC OO AA EE#1337", "nobii#DEBUG"],
-        removeTricodes: false,
-      },
+        playercamsInfo: {
+          enable: true,
+          enabledPlayers: ["FNC OO AA EE#1337", "nobii#DEBUG"],
+          removeTricodes: false,
+        },
         nameOverrides: { overrides: nameOverrideMap },
       },
       timeoutState: {
@@ -597,7 +597,7 @@ export class TestingComponent implements OnInit {
   techPause() {
     const currentState = this.dataModel.match().timeoutState;
     const isCurrentlyActive = currentState.techPause;
-    
+
     if (isCurrentlyActive) {
       // End tech pause
       this.stopTimeoutTimer();
@@ -650,16 +650,13 @@ export class TestingComponent implements OnInit {
     const currentState = this.dataModel.match().timeoutState;
     const isLeftActive = currentState.leftTeam;
     const isRightActive = currentState.rightTeam;
-    
-    if (
-      (teamIndex == 0 && isLeftActive) ||
-      (teamIndex == 1 && isRightActive)
-    ) {
+
+    if ((teamIndex == 0 && isLeftActive) || (teamIndex == 1 && isRightActive)) {
       // End the timeout for this team
       this.stopTimeoutTimer();
       return;
     }
-    
+
     // Start timeout for the team
     this.stopTimeoutTimer(); // Stop any existing timeout first
     this.dataModel.match.update((v) => {

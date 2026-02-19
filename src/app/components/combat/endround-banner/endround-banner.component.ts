@@ -69,9 +69,7 @@ export class EndroundBannerComponent {
   });
 
   teamWonSide = computed(() => {
-    return this.dataModel.match().attackersWon 
-      ? "ATK" 
-      : "DEF";
+    return this.dataModel.match().attackersWon ? "ATK" : "DEF";
   });
 
   teamWonLogoUrl = computed(() => {
@@ -91,7 +89,7 @@ export class EndroundBannerComponent {
   ref = effect(() => {
     const roundPhase = this.dataModel.match().roundPhase;
     const roundNumber = this.dataModel.match().roundNumber;
-    
+
     if (roundPhase === "end") {
       if (roundNumber === this.lastInRoundNumber) return;
       this.lastInRoundNumber = roundNumber;
@@ -117,7 +115,7 @@ export class EndroundBannerComponent {
             setTimeout(() => {
               this.clipClosing = true;
               this.showReverseSquares = true;
-              
+
               // Hide component after reverse animation completes (500ms)
               setTimeout(() => {
                 this.hide = true;
