@@ -40,7 +40,7 @@ export class SponsorBoxComponent implements OnDestroy {
 
   private setupSponsorRotation(): void {
     const sponsorInfo = this.dataModel.sponsorInfo();
-    
+
     // Clear any existing interval
     if (this.intervalId) {
       clearInterval(this.intervalId);
@@ -49,17 +49,18 @@ export class SponsorBoxComponent implements OnDestroy {
 
     // Reset to first index when sponsors change
     this.currentIndex.set(0);
-    
+
     // Check if sponsors exist and are enabled
     if (!sponsorInfo.enabled || !sponsorInfo.sponsors || sponsorInfo.sponsors.length === 0) {
       return;
     }
 
     // Ensure duration is valid (convert to milliseconds if needed)
-    const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
-    
+    const duration =
+      sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
+
     if (duration <= 0) {
-      console.warn('Sponsor box: Invalid duration:', sponsorInfo.duration);
+      console.warn("Sponsor box: Invalid duration:", sponsorInfo.duration);
       return;
     }
 

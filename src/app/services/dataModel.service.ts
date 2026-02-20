@@ -80,8 +80,7 @@ export class DataModelService {
     }
   }
 
-
-  public  numberFormatter = computed<Intl.NumberFormat>(() => {
+  public numberFormatter = computed<Intl.NumberFormat>(() => {
     try {
       return new Intl.NumberFormat([this.language(), "en"], { useGrouping: true });
     } catch (error) {
@@ -94,39 +93,41 @@ export class DataModelService {
     this.mapban.set(data);
   }
 
-  public  groupCode = signal("");
-  public  sessionId = signal("");
-  public  language = signal("en");
-  public  minimalMode = signal(false);
-  public  hideAuxiliary = signal(false);
+  public groupCode = signal("");
+  public sessionId = signal("");
+  public language = signal("en");
+  public minimalMode = signal(false);
+  public hideAuxiliary = signal(false);
 
-  public  match = signal<IMatchData>(initialMatchData, { equal: () => false });
-  public  teams = computed(() => this.match().teams, { equal: () => false });
-  public  timeoutState = computed(() => this.match().timeoutState, {
+  public match = signal<IMatchData>(initialMatchData, { equal: () => false });
+  public teams = computed(() => this.match().teams, { equal: () => false });
+  public timeoutState = computed(() => this.match().timeoutState, {
     equal: () => false,
   });
-  public  timeoutCounter = computed(() => this.match().tools.timeoutCounter, {
+  public timeoutCounter = computed(() => this.match().tools.timeoutCounter, {
     equal: isEqual,
   });
-  public  timeoutCancellationGracePeriod = computed(() => this.match().tools.timeoutCancellationGracePeriod);
+  public timeoutCancellationGracePeriod = computed(
+    () => this.match().tools.timeoutCancellationGracePeriod,
+  );
 
-  public  spikeState = computed(() => this.match().spikeState, {
+  public spikeState = computed(() => this.match().spikeState, {
     equal: isEqual,
   });
-  public  seriesInfo = computed(() => this.match().tools.seriesInfo);
-  public  seedingInfo = computed(() => this.match().tools.seedingInfo);
-  public  sponsorInfo = computed(() => this.match().tools.sponsorInfo);
-  public  watermarkInfo = computed(() => this.match().tools.watermarkInfo);
-  public  tournamentInfo = computed(() => this.match().tools.tournamentInfo);
-  public  playercamsInfo = computed(() => this.match().tools.playercamsInfo, {
+  public seriesInfo = computed(() => this.match().tools.seriesInfo);
+  public seedingInfo = computed(() => this.match().tools.seedingInfo);
+  public sponsorInfo = computed(() => this.match().tools.sponsorInfo);
+  public watermarkInfo = computed(() => this.match().tools.watermarkInfo);
+  public tournamentInfo = computed(() => this.match().tools.tournamentInfo);
+  public playercamsInfo = computed(() => this.match().tools.playercamsInfo, {
     equal: () => false,
   });
 
-  public  mapban = signal<IMapbanSessionData>(initialMapbanData, { equal: () => false });
+  public mapban = signal<IMapbanSessionData>(initialMapbanData, { equal: () => false });
 }
 
 //setting up with empty match state so certain ui parts dont complain
-const initialMatchData: IMatchData = {
+export const initialMatchData: IMatchData = {
   groupCode: "A",
   isRanked: false,
   isRunning: true,
