@@ -39,9 +39,9 @@ export class EndroundBannerComponent {
     // Todo: implement Thrifty round ceremonies when data gets available by Overwolf
     const thrifty = false;
 
-    for (const player of lostTeam.players) {
+    lostTeam.players.forEach((player) => {
       if (player.isAlive) flawless = false;
-    }
+    });
 
     for (const player of wonTeam.players) {
       if (new Set(player.killedPlayerNames).size >= 5) {
