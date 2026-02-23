@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from "@angular/core";
+import { Component, computed, effect, inject, signal, WritableSignal } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
 import { TranslateKeys } from "../../../services/i18nHelper";
 import { DataModelService } from "../../../services/dataModel.service";
@@ -24,6 +24,43 @@ export class EndroundBannerComponent {
   lastOutRoundNumber = -1;
 
   TranslateKeys = TranslateKeys;
+
+  roundWonType: WritableSignal<TranslateKeys> = signal(TranslateKeys.Endround_RoundWin);
+
+  private calculateRoundWonType(): TranslateKeys {
+    const wonTeam = this.dataModel.match().teams[this.teamWon()];
+    const lostTeam = this.dataModel.match().teams[this.teamWon() === 0 ? 1 : 0];
+    let aliveCount = 0;
+
+    let ace = false;
+    let clutch = false;
+    let flawless = true;
+    let teamAce = true;
+    // Todo: implement Thrifty round ceremonies when data gets available by Overwolf
+    const thrifty = false;
+
+    lostTeam.players.forEach((player) => {
+      if (player.isAlive) flawless = false;
+    });
+
+    for (const player of wonTeam.players) {
+      if (new Set(player.killedPlayerNames).size >= 5) {
+        ace = true;
+        break;
+      }
+      if (player.isAlive) aliveCount++;
+      if (player.deathsThisRound >= 1) flawless = false;
+      if (!(player.killsThisRound >= 1)) teamAce = false;
+    }
+    if (aliveCount == 1) clutch = true;
+
+    if (ace) return TranslateKeys.Endround_RoundAce;
+    else if (clutch) return TranslateKeys.Endround_RoundClutch;
+    else if (teamAce) return TranslateKeys.Endround_RoundTeamAce;
+    else if (flawless) return TranslateKeys.Endround_RoundFlawless;
+    else if (thrifty) return TranslateKeys.Endround_RoundThrifty;
+    else return TranslateKeys.Endround_RoundWin;
+  }
 
   tournamentBackgroundUrl = computed(() => {
     const backdrop = this.dataModel.tournamentInfo().backdropUrl;
@@ -69,9 +106,7 @@ export class EndroundBannerComponent {
   });
 
   teamWonSide = computed(() => {
-    return this.dataModel.match().attackersWon 
-      ? "ATK" 
-      : "DEF";
+    return this.dataModel.match().attackersWon ? "ATK" : "DEF";
   });
 
   teamWonLogoUrl = computed(() => {
@@ -91,7 +126,7 @@ export class EndroundBannerComponent {
   ref = effect(() => {
     const roundPhase = this.dataModel.match().roundPhase;
     const roundNumber = this.dataModel.match().roundNumber;
-    
+
     if (roundPhase === "end") {
       if (roundNumber === this.lastInRoundNumber) return;
       this.lastInRoundNumber = roundNumber;
@@ -109,25 +144,29 @@ export class EndroundBannerComponent {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            this.showAnimation = true;
-            this.showRevealSquares = true;
-
-            // After initial animations complete (550ms reveal-text/background completes)
-            // Wait 5.66 seconds, then trigger reverse animation
             setTimeout(() => {
-              this.clipClosing = true;
-              this.showReverseSquares = true;
-              
-              // Hide component after reverse animation completes (500ms)
+              this.roundWonType.set(this.calculateRoundWonType());
+
+              this.showAnimation = true;
+              this.showRevealSquares = true;
+
+              // After initial animations complete (550ms reveal-text/background completes)
+              // Wait 5.66 seconds, then trigger reverse animation
               setTimeout(() => {
-                this.hide = true;
-                this.showAnimation = false;
-                this.showRevealSquares = false;
-                this.showReverseSquares = false;
-                this.clipClosed = false;
-                this.clipClosing = false;
-              }, 260);
-            }, 550 + 5660); // 550ms (reveal complete) + 5660ms delay
+                this.clipClosing = true;
+                this.showReverseSquares = true;
+
+                // Hide component after reverse animation completes (500ms)
+                setTimeout(() => {
+                  this.hide = true;
+                  this.showAnimation = false;
+                  this.showRevealSquares = false;
+                  this.showReverseSquares = false;
+                  this.clipClosed = false;
+                  this.clipClosing = false;
+                }, 260);
+              }, 550 + 5660); // 550ms (reveal complete) + 5660ms delay
+            }, 200);
           });
         });
       });
