@@ -5,7 +5,7 @@
   <!-- LEFT TEAM -->
   <div class="relative ml-10 my-4.5 grid h-97/100 w-[740px] grid-cols-[740px] grid-rows-[220px_10px_160px_160px_10px_485px]">
     <!-- Team Info -->
-    <div class="bg-black/10 backdrop-blur-2xl backdrop-brightness-40 row-span-1">
+    <div class="bg-black/10 backdrop-blur-2xl backdrop-brightness-40 row-span-1 rounded-tl-lg">
       <div class="flex h-full w-full flex-row items-center">
         <img class="h-3/4 w-1/6 object-contain p-8" src="{{leftTeam?.url}}" />
         <div class="flex h-1/2 w-2/6 flex-col justify-around">
@@ -60,7 +60,7 @@
     </div>
     <div class="flex flex-row h-[485px]">
       <!-- Map area -->
-      <div class="relative w-[295px] h-[485px] overflow-hidden">
+      <div class="relative w-[295px] h-[485px] overflow-hidden rounded-bl-lg">
         <img class="absolute h-full w-full object-cover" src="/assets/maps/tall/{{statsData?.metadata?.map?.name}}.webp" />
         <div class="absolute bottom-0 left-0 flex h-14 w-57.5 bg-[#AE2A2A] rounded-tr-lg items-center justify-center">
           <span class="font-replica text-3xl text-white uppercase">{{statsData?.metadata?.map?.name}}</span>
@@ -92,7 +92,7 @@
         <span>ACS</span>
         <span>First Kills</span>
       </div>
-      <div class="flex flex-col items-center text-center gap-10.5 mt-8">
+      <div class="flex flex-col items-center text-center gap-10.5 mt-8.5">
         @for (i of numSequence(5); track $index) { @if ($index > 0) {
         <div class="flex flex-col font-replica text-[1.375rem] text-white uppercase text-center gap-3">
           <span>KDA</span>
@@ -105,7 +105,7 @@
   <!-- RIGHT TEAM -->
   <div class="relative mr-10 my-4.5 grid h-97/100 w-[740px] grid-cols-[740px] grid-rows-[220px_10px_160px_160px_10px_485px]">
     <!-- Team Info -->
-    <div class="bg-black/10 backdrop-blur-2xl backdrop-brightness-40 row-span-1">
+    <div class="bg-black/10 backdrop-blur-2xl backdrop-brightness-40 row-span-1 rounded-tr-lg">
       <div class="flex h-full w-full flex-row items-center">
         <div class="font-foundry-extrabold w-1/6 text-center text-[108px] text-white pl-6">
           {{rightTeam?.rounds?.won}}
@@ -141,7 +141,7 @@
         } }
       </div>
       <!-- Sponsor area -->
-      <div class="flex relative w-[295px] h-[485px] bg-[#111111] overflow-hidden items-center justify-center">
+      <div class="flex relative w-[295px] h-[485px] bg-[#111111] overflow-hidden items-center justify-center rounded-br-lg">
         <img class="h-18 w-full object-contain" src="{{dataModel.sponsorInfo().sponsors[0] || 'assets/misc/logo.webp'}}" />
       </div>
     </div>
