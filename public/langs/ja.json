@@ -23,6 +23,6 @@
   "scoreboard.kills": "Kill",
   "scoreboard.deaths": "Death",
   "scoreboard.assists": "Assist",
-  "timeout.technical_pause": "TECH PAUSE",
+  "timeout.technical_pause": "TECHNICAL PAUSE",
   "timeout.tactical_timeout": "タイムアウト"
 }

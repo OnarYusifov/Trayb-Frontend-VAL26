@@ -48,6 +48,20 @@ const routes: Routes = [
         path: "agent-select",
         component: TestingAgentSelectComponent,
       },
+      {
+        path: "team-breakdown",
+        loadComponent: () =>
+          import("./overlays/testing-team-breakdown/testing-team-breakdown").then(
+            (m) => m.TestingTeamBreakdown,
+          ),
+      },
+      {
+        path: "map-breakdown",
+        loadComponent: () =>
+          import("./overlays/testing-map-breakdown/testing-map-breakdown").then(
+            (m) => m.TestingMapBreakdown,
+          ),
+      },
     ],
   },
   {

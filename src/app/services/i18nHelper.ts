@@ -52,4 +52,6 @@ export enum TranslateKeys {
   Breakdown_AverageLoadoutValue = "breakdown.average_loadout_value",
   Breakdown_RetakeSuccessRate = "breakdown.retake_success_rate",
   Breakdown_TradeSuccessRate5s = "breakdown.trade_success_rate_5s",
+  Breakdown_Win = "breakdown.win",
+  Breakdown_Loss = "breakdown.loss",
 }

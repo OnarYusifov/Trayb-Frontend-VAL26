@@ -13,6 +13,7 @@ import { RegularPlayer } from "../../components/breakdown/regular-player/regular
 import { TranslateKeys } from "../../services/i18nHelper";
 import { TranslatePipe } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
+import { DataModelService } from "../../services/dataModel.service";
 
 @Component({
   selector: "app-team-breakdown",
@@ -21,6 +22,7 @@ import { Subscription } from "rxjs";
   styleUrl: "./team-breakdown.css",
 })
 export class TeamBreakdown implements OnInit, OnDestroy {
+  protected dataModel = inject(DataModelService);
   protected config = inject(Config);
   private leftTeamName = "Blue";
   private rightTeamName = "Red";

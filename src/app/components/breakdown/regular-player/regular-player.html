@@ -1,62 +1,28 @@
-<div class="grid h-full w-full grid-cols-3" [style.direction]="isRight ? 'rtl' : 'ltr'">
+<div class="grid h-full w-full grid-cols-[2fr_1fr]" [style.direction]="isRight ? 'rtl' : 'ltr'">
   <!-- Image + Name-->
-  <div class="col-span-1 flex h-full min-h-0 flex-row overflow-visible">
+  <div class="col-span-1 flex h-full min-h-0 flex-row overflow-hidden">
     <img
-      class="w-1/2"
+      class="h-[120px] w-[120px] shrink-0 object-cover bg-[#111111]"
       [class.-scale-x-100]="isRight"
       src="/assets/agents/{{agentInternalName}}Icon.webp"
     />
-    <div class="flex h-full w-1/2 flex-col items-start justify-end px-2">
-      <div class="flex flex-row items-center gap-2">
-        <img class="vh-18 vw-18" src="/assets/roles/{{ getAgentRole(agentInternalName) }}.webp" />
-        <span class="text-md font-bold text-white">{{player.agent.name}}</span>
-      </div>
-      <span class="text-lg font-bold text-white">{{player.name}}</span>
-    </div>
-  </div>
-  <!-- Abilities -->
-  <div class="col-span-1 flex h-full w-full flex-col">
-    <div class="h-1/2">
-      <div class="flex h-full flex-row content-center items-center justify-center gap-2">
-        <img class="vh-48 vw-48" src="/assets/ultimates/{{agentInternalName}}Ultimate.webp" />
-        <span class="font-unbounded text-3xl font-bold text-white"
-          >{{player.ability_casts.ultimate}}</span
-        >
-      </div>
-    </div>
-    <div class="flex h-1/2 flex-row" [style.direction]="'ltr'">
-      <div class="flex h-full w-full flex-col content-center items-center justify-center gap-1">
-        <img class="vh-32 vw-32" src="/assets/grenades/{{agentInternalName}}Grenade.webp" />
-        <span class="font-montserrat text-xl text-white">{{player.ability_casts.grenade}}</span>
-      </div>
-      <div class="flex h-full w-full flex-col content-center items-center justify-center gap-1">
-        <img class="vh-32 vw-32" src="/assets/ability1/{{agentInternalName}}Ability1.webp" />
-        <span class="font-montserrat text-xl text-white">{{player.ability_casts.ability1}}</span>
-      </div>
-      <div class="flex h-full w-full flex-col content-center items-center justify-center gap-1">
-        <img class="vh-32 vw-32" src="/assets/ability2/{{agentInternalName}}Ability2.webp" />
-        <span class="font-montserrat text-xl text-white">{{player.ability_casts.ability2}}</span>
-      </div>
+    <div class="@container flex h-full min-w-0 flex-1 flex-col items-start justify-center px-2">
+      <span class="text-[clamp(1rem,7.5cqi,1.125rem)] font-replica text-white uppercase whitespace-nowrap overflow-hidden">{{player.agent.name}}</span>
+      <span class="text-[clamp(1.125rem,12.4cqi,1.3125rem)] font-replica text-white uppercase whitespace-nowrap overflow-hidden">{{player.name}}</span>
     </div>
   </div>
   <!-- Numbers -->
   <div
-    class="col-span-1 mx-2 flex h-full w-full flex-col items-center justify-around text-center"
+    class="col-span-1 mx-2 flex h-full w-full flex-col justify-center"
+    [class]="isRight ? 'text-left items-start' : 'text-right items-end'"
     [style.direction]="'ltr'"
   >
-    <div class="flex flex-col">
-      <span class="font-montserrat text-md text-gray-300"
-        >{{TranslateKeys.Breakdown_ACS | translate}}</span
-      >
-      <span class="font-unbounded text-3xl text-white">{{player.stats.acs}}</span>
-    </div>
-    <div class="flex flex-col">
-      <span class="font-montserrat text-sm text-gray-300"
-        >{{TranslateKeys.Breakdown_KDA | translate}}</span
-      >
-      <span class="font-unbounded text-2xl text-white"
-        >{{player.stats.kills}} / {{player.stats.deaths}} / {{player.stats.assists}}</span
-      >
-    </div>
+      <span class="font-foundry-extrabold text-[2rem] text-white"
+      [class]="isRight ? 'ml-8' : 'mr-8'"
+      >{{player.stats.acs}}</span>
+      <span class="font-foundry-extrabold text-[2rem] text-white"
+      [class]="isRight ? 'ml-8' : 'mr-8'"
+      >{{player.stats.kills}}/{{player.stats.deaths}}/{{player.stats.assists}}</span
+    >
   </div>
 </div>

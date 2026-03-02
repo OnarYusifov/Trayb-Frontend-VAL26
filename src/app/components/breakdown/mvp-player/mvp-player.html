@@ -1,99 +1,38 @@
-<div class="grid h-full w-full grid-cols-3 gap-4" [style.direction]="isRight ? 'rtl' : 'ltr'">
-  <!-- Image -->
-  <div class="col-span-1 flex h-full min-h-0 flex-col overflow-hidden">
-    <span class="font-unbounded text-center text-4xl text-white"
+<div class="relative grid h-full w-full grid-cols-3 overflow-hidden" [style.direction]="isRight ? 'rtl' : 'ltr'">
+  <!-- MVP Badge -->
+  <div class="absolute top-0 z-10 bg-[#AE2A2A] h-[56px] w-[128px] flex items-center justify-center"
+    [class]="isRight ? 'right-0 rounded-bl-lg' : 'left-0 rounded-br-lg'">
+    <span class="font-replica text-center text-3xl text-white"
       >{{TranslateKeys.Breakdown_MVP | translate}}</span
     >
-    <div class="min-h-0 flex-1 overflow-visible">
-      <img
-        class="h-[250%] w-full -translate-y-[10%] object-cover object-top"
-        [class]="isRight ? 'translate-x-[2%]' : '-translate-x-[2%]'"
-        src="/assets/agent-portraits/{{agentInternalName}}Portrait.webp"
-      />
-    </div>
   </div>
-  <!-- Name + Abilities -->
-  <div class="col-span-1 flex flex-col gap-2">
-    <!-- Abilities -->
-    <div class="h-3/5 w-full">
-      <!-- Ult -->
-      <div class="flex h-1/2 w-full flex-row content-center items-center justify-center gap-4">
-        <img class="h-2/3" src="/assets/ultimates/{{agentInternalName}}Ultimate.webp" />
-        <span class="font-unbounded text-6xl font-bold text-white"
-          >{{player.ability_casts.ultimate}}</span
-        >
-      </div>
-      <!-- Normal -->
-      <div
-        class="grid h-1/2 grid-cols-3 content-center items-center justify-center gap-4"
-        [style.direction]="'ltr'"
-      >
-        <!-- Grenade -->
-        <div class="col-span-1 flex flex-col items-center justify-center gap-1">
-          <img class="h-2/5 w-2/5" src="/assets/grenades/{{agentInternalName}}Grenade.webp" />
-          <span class="font-montserrat text-xl font-semibold text-white"
-            >{{player.ability_casts.grenade}}</span
-          >
-        </div>
-        <!-- Ability 1 -->
-        <div class="col-span-1 flex flex-col items-center justify-center gap-1">
-          <img class="h-2/5 w-2/5" src="/assets/ability1/{{agentInternalName}}Ability1.webp" />
-          <span class="font-montserrat text-xl font-semibold text-white"
-            >{{player.ability_casts.ability1}}</span
-          >
-        </div>
-        <!-- Ability 2 -->
-        <div class="col-span-1 flex flex-col items-center justify-center gap-1">
-          <img class="h-2/5 w-2/5" src="/assets/ability2/{{agentInternalName}}Ability2.webp" />
-          <span class="font-montserrat text-xl font-semibold text-white"
-            >{{player.ability_casts.ability2}}</span
-          >
-        </div>
-      </div>
-    </div>
-    <div class="flex h-1/3 flex-col items-center justify-end gap-1">
-      <div class="flex flex-row content-center items-center justify-end gap-2">
-        <img class="vh-24 vw-24" src="/assets/roles/{{ getAgentRole(agentInternalName) }}.webp" />
-        <span class="text-xl font-bold text-white">{{player.agent.name}}</span>
-      </div>
-      <span class="text-3xl font-bold text-white">{{player.name}}</span>
-    </div>
+  <!-- Names -->
+  <div class="col-span-1 flex flex-col justify-end pb-4 gap-1.5 z-1"
+  [class]="isRight ? 'items-end text-right pr-4' : 'items-start text-left pl-4'"
+  [style.direction]="'ltr'"
+  >
+    <span class="text-3xl font-replica text-white uppercase">{{player.agent.name}}</span>
+    <span class="text-5xl font-replica text-white uppercase">{{player.name}}</span>
+  </div>
+  <!-- Agent Portrait -->
+  <div class="col-span-1 relative z-0">
+    <img class="absolute -top-20 left-1/2 -translate-x-[47%] h-[250%] w-auto object-top" src="/assets/agent-portraits/{{agentInternalName}}Portrait.webp" />
   </div>
   <!-- Numbers -->
   <div
-    class="col-span-1 flex h-full w-full flex-col items-center justify-around text-center"
+    class="col-span-1 flex h-full w-full flex-col justify-center z-1"
+    [class]="isRight ? 'text-left items-start pl-4' : 'text-right items-end pr-4'"
     [style.direction]="'ltr'"
   >
-    <div class="flex flex-col">
-      <span class="font-montserrat text-xl text-gray-300"
-        >{{TranslateKeys.Breakdown_ACS | translate}}</span
+      <span class="font-foundry-extrabold text-[3.5rem] text-white"
+      [class]="isRight ? 'ml-6' : 'mr-6'"
+        >{{player.stats.kills}}/{{player.stats.deaths}}/{{player.stats.assists}}</span
       >
-      <span class="font-unbounded text-4xl text-white">{{player.stats.acs}}</span>
-    </div>
-    <div class="flex flex-col">
-      <span class="font-montserrat text-md text-gray-300"
-        >{{TranslateKeys.Breakdown_KDA | translate}}</span
-      >
-      <span class="font-unbounded text-3xl text-white"
-        >{{player.stats.kills}} / {{player.stats.deaths}} / {{player.stats.assists}}</span
-      >
-    </div>
-    <div class="flex flex-row gap-8" [style.direction]="isRight ? 'rtl' : 'ltr'">
-      <div class="flex flex-col" [style.direction]="'ltr'">
-        <span class="font-montserrat text-md text-gray-300"
-          >{{TranslateKeys.Breakdown_HeadshotPercentage | translate}}</span
-        >
-        <span class="font-unbounded text-3xl text-white"
-          >{{round(player.stats.headshots / (player.stats.bodyshots + player.stats.legshots +
-          player.stats.headshots) * 100)}}%</span
-        >
-      </div>
-      <div class="flex flex-col">
-        <span class="font-montserrat text-md text-gray-300"
-          >{{TranslateKeys.Breakdown_FirstKills | translate}}</span
-        >
-        <span class="font-unbounded text-3xl text-white">{{player.stats.firstKills}}</span>
-      </div>
-    </div>
+      <span class="font-foundry-extrabold text-[3.5rem] text-white"
+      [class]="isRight ? 'ml-6' : 'mr-6'"
+      >{{player.stats.acs}}</span>
+      <span class="font-foundry-extrabold text-[3.5rem] text-white"
+      [class]="isRight ? 'ml-6' : 'mr-6'"
+      >{{player.stats.firstKills}}</span>
   </div>
 </div>

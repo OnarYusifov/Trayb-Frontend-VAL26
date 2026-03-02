@@ -181,6 +181,7 @@ body {
 }
 
 :root {
+  --color-timer-rgb: 15, 25, 35; /* matches --color-timer: #0f1923 */
   --light: #ffffff;
   --dark: #000000;
   --less-dark: #0f0f0f;
