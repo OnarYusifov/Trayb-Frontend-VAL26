@@ -190,7 +190,6 @@ export class EndroundBannerComponent {
 
                   this.clutchTeamOne = -1;
                   this.clutchTeamTwo = -1;
-                  console.log("blub");
                 }, 260);
               }, 550 + 5660); // 550ms (reveal complete) + 5660ms delay
             }, 200);
