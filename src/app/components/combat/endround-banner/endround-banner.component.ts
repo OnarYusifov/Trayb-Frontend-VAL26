@@ -27,8 +27,6 @@ export class EndroundBannerComponent {
 
   roundWonType: WritableSignal<TranslateKeys> = signal(TranslateKeys.Endround_RoundWin);
 
-  clutchTeamOne = -1;
-  clutchTeamTwo = -1;
   clutch: number[] = [-1, -1];
 
   private calculateClutch(): void {
@@ -188,8 +186,7 @@ export class EndroundBannerComponent {
                   this.clipClosed = false;
                   this.clipClosing = false;
 
-                  this.clutchTeamOne = -1;
-                  this.clutchTeamTwo = -1;
+                  this.clutch = [-1, -1];
                 }, 260);
               }, 550 + 5660); // 550ms (reveal complete) + 5660ms delay
             }, 200);
