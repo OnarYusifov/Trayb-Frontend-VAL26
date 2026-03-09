@@ -148,7 +148,6 @@ export class MapBreakdown implements OnInit, OnDestroy {
       )
       .subscribe((data: { leftTeam: AuthTeam; rightTeam: AuthTeam; higherScore: 0 | 1 }) => {
         this.processTeamInfo(data);
-        this.processStatsDataFully();
       });
   }
 
@@ -396,6 +395,18 @@ export class MapBreakdown implements OnInit, OnDestroy {
   }
 
   processTeamInfo(teamInfo: { leftTeam: AuthTeam; rightTeam: AuthTeam; higherScore: 0 | 1 }) {
+    const leftWon = teamInfo.higherScore === 0 ? true : false;
+    const winningTeam = this.statsData!.teams.find((team) => team.won === true);
+    if (leftWon) {
+      this.leftTeamName = winningTeam?.team_id || "Red";
+      this.rightTeamName = winningTeam?.team_id === "Red" ? "Blue" : "Red";
+    } else {
+      this.rightTeamName = winningTeam?.team_id || "Red";
+      this.leftTeamName = winningTeam?.team_id === "Red" ? "Blue" : "Red";
+    }
+
+    this.processStatsDataFully();
+
     this.leftTeam = {
       ...this.leftTeam!,
       name: teamInfo.leftTeam.name,
@@ -408,16 +419,6 @@ export class MapBreakdown implements OnInit, OnDestroy {
       tricode: teamInfo.rightTeam.tricode,
       url: teamInfo.rightTeam.url,
     };
-
-    const leftWon = teamInfo.higherScore === 0 ? true : false;
-    const winningTeam = this.statsData!.teams.find((team) => team.won === true);
-    if (leftWon) {
-      this.leftTeamName = winningTeam?.team_id || "Red";
-      this.rightTeamName = winningTeam?.team_id === "Red" ? "Blue" : "Red";
-    } else {
-      this.rightTeamName = winningTeam?.team_id || "Red";
-      this.leftTeamName = winningTeam?.team_id === "Red" ? "Blue" : "Red";
-    }
   }
 
   numSequence(n: number): number[] {
