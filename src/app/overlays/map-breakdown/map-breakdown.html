@@ -3,7 +3,7 @@
   class="flex h-screen w-screen flex-row"
 >
   <!-- Left Team -->
-  <div class="bg-black/70 ml-10 my-4.5 w-185 h-55 backdrop-blur-2xl backdrop-brightness-40 rounded-tl-lg">
+  <div class="bg-black/90 ml-10 my-4.5 w-185 h-55 backdrop-blur-2xl backdrop-brightness-30 rounded-tl-lg">
     <div class="flex h-full w-full flex-row items-center">
       <img class="h-3/4 w-1/6 object-contain p-8" src="{{leftTeam?.url}}" />
       <div class="flex h-1/2 w-2/6 flex-col justify-around">
@@ -17,11 +17,11 @@
     </div>
   </div>
   <!-- Event Logo -->
-  <div class="flex bg-black/60 backdrop-blur-2xl backdrop-brightness-70 h-55 w-90 items-center mt-4.5">
+  <div class="flex bg-black/80 backdrop-blur-2xl backdrop-brightness-70 h-55 w-90 items-center mt-4.5">
     <img class="h-36 w-full object-contain" [src]="dataModel.tournamentInfo().logoUrl || 'assets/misc/icon.webp'" />
   </div>
   <!-- Right Team -->
-  <div class="bg-black/70 mr-10 my-4.5 w-185 h-55 backdrop-blur-2xl backdrop-brightness-40 row-span-1 rounded-tr-lg">
+  <div class="bg-black/90 mr-10 my-4.5 w-185 h-55 backdrop-blur-2xl backdrop-brightness-30 row-span-1 rounded-tr-lg">
     <div class="flex h-full w-full flex-row items-center">
       <div class="font-foundry-extrabold w-1/6 text-center text-[108px] text-white pl-6">
         {{rightTeam?.rounds?.won}}

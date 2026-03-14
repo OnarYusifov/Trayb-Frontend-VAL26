@@ -9,7 +9,7 @@
   <div class="relative ml-10 my-4.5 grid h-97/100 w-[740px] grid-cols-[740px] grid-rows-[220px_10px_160px_160px_10px_485px]">
     <!-- Team Info -->
     <div class="backdrop-blur-2xl backdrop-brightness-40 row-span-1 rounded-tl-lg"
-    [class]="hideBg ? 'bg-black/70' : 'bg-black/10'">
+    [class]="hideBg ? 'bg-black/90' : 'bg-black/10'">
       <div class="flex h-full w-full flex-row items-center">
         <img class="h-3/4 w-1/6 object-contain p-8" src="{{leftTeam?.url}}" />
         <div class="flex h-1/2 w-2/6 flex-col justify-around">
@@ -90,7 +90,7 @@
   <!-- Middle Info Panel -->
   <div class="flex flex-col w-90 my-4.5 gap-2.5 z-1">
     <div class="flex backdrop-blur-2xl backdrop-brightness-70 h-55 items-center"
-    [class]="hideBg ? 'bg-black/60' : 'bg-black/30'">
+    [class]="hideBg ? 'bg-black/80' : 'bg-black/30'">
       <img class="h-36 w-full object-contain" [src]="dataModel.tournamentInfo().logoUrl || 'assets/misc/icon.webp'" />
     </div>
     <div class="flex flex-col h-203.5 items-center text-center bg-[#161616]">
@@ -113,7 +113,7 @@
   <div class="relative mr-10 my-4.5 grid h-97/100 w-[740px] grid-cols-[740px] grid-rows-[220px_10px_160px_160px_10px_485px]">
     <!-- Team Info -->
     <div class="backdrop-blur-2xl backdrop-brightness-40 row-span-1 rounded-tr-lg"
-    [class]="hideBg ? 'bg-black/70' : 'bg-black/10'">
+    [class]="hideBg ? 'bg-black/90' : 'bg-black/10'">
       <div class="flex h-full w-full flex-row items-center">
         <div class="font-foundry-extrabold w-1/6 text-center text-[108px] text-white pl-6">
           {{rightTeam?.rounds?.won}}
