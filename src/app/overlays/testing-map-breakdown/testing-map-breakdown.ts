@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import {
   StatsApiMatch,
   StatsApiMatchPlayer,
@@ -8,6 +8,7 @@ import {
 } from "../../components/breakdown/StatsApiMapping";
 import { TranslateKeys } from "../../services/i18nHelper";
 import { TranslatePipe } from "@ngx-translate/core";
+import { DataModelService } from "../../services/dataModel.service";
 
 @Component({
   selector: "app-testing-map-breakdown",
@@ -17,6 +18,8 @@ import { TranslatePipe } from "@ngx-translate/core";
 })
 export class TestingMapBreakdown implements OnInit {
   TranslateKeys = TranslateKeys;
+
+  dataModel = inject(DataModelService);
 
   protected hideBg = false;
   protected statsData?: StatsApiMatch;
@@ -337,7 +340,7 @@ export class TestingMapBreakdown implements OnInit {
       StatsApiWinReasons.Detonated,
     ];
 
-    for (let i = 1; i <= 22; i++) {
+    for (let i = 1; i <= 23; i++) {
       const winningTeam = i % 3 === 0 ? "Red" : "Blue";
       const hasPlant = Math.random() > 0.3;
 

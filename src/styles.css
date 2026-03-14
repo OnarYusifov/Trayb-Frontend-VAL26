@@ -62,6 +62,9 @@
   --color-attacker-shield: #ff838f;
   --color-attacker-scoreboard: #ff1e31;
   --color-attacker-roundReasons: #1d1414;
+
+  --color-postmatch-primary: #AE2A2A;
+  --color-postmatch-secondary: #FFD075;
 }
 
 @utility font-montserrat {
