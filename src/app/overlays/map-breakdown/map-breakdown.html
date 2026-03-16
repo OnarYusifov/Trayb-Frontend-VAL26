@@ -180,9 +180,13 @@
   </div>
   <!-- Sponsor Block -->
   <div class="absolute flex bg-[#111111] bottom-4.5 right-10 h-206 w-73.75 rounded-br-md items-center justify-center z-1">
-    <img
-      class="absolute h-18 w-full object-contain" src="{{dataModel.sponsorInfo().sponsors[0] || 'assets/misc/logo.webp'}}"
-    />
+    @for (sponsor of dataModel.sponsorInfo().sponsors; track $index) {
+      <img
+        class="sponsor-img absolute h-18 w-full object-contain"
+        [class.active]="currentSponsorIndex() === $index"
+        [src]="sponsor"
+      />
+    }
   </div>
 </div>
 }

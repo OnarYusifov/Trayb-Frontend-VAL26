@@ -9,8 +9,6 @@
         [class.active]="currentIndex() === $index"
         [src]="sponsor"
         [alt]="'Sponsor ' + ($index + 1)"
-        (error)="onImageError($event, sponsor, $index)"
-        (load)="onImageLoad(sponsor, $index)"
       />
     }
   </div>

@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, effect } from "@angular/core";
 import { Config } from "../../shared/config";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
@@ -45,6 +45,29 @@ export class TeamBreakdown implements OnInit, OnDestroy {
   private hasReceivedData = false;
   private pollTimerRef?: ReturnType<typeof setInterval>;
   private routeSubscription?: Subscription;
+
+  protected currentSponsorIndex = signal(0);
+  private sponsorIntervalId?: number;
+
+  constructor() {
+    effect(() => {
+      const sponsorInfo = this.dataModel.sponsorInfo();
+
+      if (this.sponsorIntervalId) {
+        clearInterval(this.sponsorIntervalId);
+        this.sponsorIntervalId = undefined;
+      }
+      this.currentSponsorIndex.set(0);
+
+      if (sponsorInfo.enabled && sponsorInfo.sponsors.length > 1) {
+        const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
+        this.sponsorIntervalId = window.setInterval(() => {
+          this.currentSponsorIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
+        }, duration);
+      }
+    });
+  }
+
 
   ngOnInit() {
     this.routeSubscription = this.route.queryParams.subscribe((params) => {
