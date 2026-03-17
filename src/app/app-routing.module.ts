@@ -114,7 +114,7 @@ const routes: Routes = [
     path: "live-toast",
     loadComponent: () =>
       import("./overlays/toast-overlay/toast-component").then((m) => m.LiveToastComponent),
-  }
+  },
 ];
 
 @NgModule({

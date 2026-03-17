@@ -16,14 +16,14 @@ import { DataModelService } from "../../services/dataModel.service";
   templateUrl: "./testing-team-breakdown.html",
   styleUrl: "./testing-team-breakdown.css",
 })
-export class TestingTeamBreakdown implements OnInit {
+export class TestingTeamBreakdown implements OnInit, OnDestroy {
   dataModel = inject(DataModelService);
 
   TranslateKeys = TranslateKeys;
 
   protected hideBg = false;
   protected statsData?: StatsApiMatch;
-  
+
   protected currentSponsorIndex = signal(0);
   private sponsorIntervalId?: number;
   protected roundsPlayed = 0;
@@ -37,7 +37,7 @@ export class TestingTeamBreakdown implements OnInit {
   ngOnInit() {
     this.initializeMockData();
   }
-  
+
   ngOnDestroy() {
     if (this.sponsorIntervalId) {
       clearInterval(this.sponsorIntervalId);
@@ -89,7 +89,7 @@ export class TestingTeamBreakdown implements OnInit {
       rounds: this.createMockRounds(),
       kills: this.createMockKills(mockPlayers),
     };
-    
+
     // Inject mock sponsor data for testing, then start rotation
     this.dataModel.match.update((data) => ({
       ...data,
@@ -98,18 +98,19 @@ export class TestingTeamBreakdown implements OnInit {
         sponsorInfo: {
           enabled: true,
           duration: 5000,
-          sponsors: [
-            "assets/misc/logo.webp",
-          ],
+          sponsors: ["assets/misc/logo.webp"],
         },
       },
     }));
 
     const sponsorInfo = this.dataModel.sponsorInfo();
     if (sponsorInfo.enabled && sponsorInfo.sponsors.length > 1) {
-      const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
+      const duration =
+        sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
       this.sponsorIntervalId = window.setInterval(() => {
-        this.currentSponsorIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
+        this.currentSponsorIndex.update(
+          (i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length,
+        );
       }, duration);
     }
 
@@ -134,9 +135,19 @@ export class TestingTeamBreakdown implements OnInit {
     this.rightPlayers.sort((a, b) => (b.stats.acs || 0) - (a.stats.acs || 0));
   }
 
-  
   private createMockPlayers(): StatsApiMatchPlayer[] {
-    const agents = ["Jett", "Phoenix", "Omen", "Sage", "Sova", "Reyna", "Killjoy", "Cypher", "Viper", "Raze"];
+    const agents = [
+      "Jett",
+      "Phoenix",
+      "Omen",
+      "Sage",
+      "Sova",
+      "Reyna",
+      "Killjoy",
+      "Cypher",
+      "Viper",
+      "Raze",
+    ];
     const players: StatsApiMatchPlayer[] = [];
 
     for (let i = 0; i < 10; i++) {
@@ -173,7 +184,11 @@ export class TestingTeamBreakdown implements OnInit {
         prefered_level_border: null,
         account_level: 250,
         session_playtime_in_ms: 2400000,
-        behavior: { afk_rounds: 0, friendly_fire: { incoming: 0, outgoing: 0 }, rounds_in_spawn: 0 },
+        behavior: {
+          afk_rounds: 0,
+          friendly_fire: { incoming: 0, outgoing: 0 },
+          rounds_in_spawn: 0,
+        },
         economy: {
           spent: { overall: 45000, average: 2045 },
           loadout_value: { overall: 52000, average: 2364 },

@@ -24,7 +24,8 @@ export class SponsorBoxComponent implements OnDestroy {
       this.currentIndex.set(0);
 
       if (sponsorInfo.enabled && sponsorInfo.sponsors.length > 1) {
-        const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
+        const duration =
+          sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
         this.intervalId = window.setInterval(() => {
           this.currentIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
         }, duration);
