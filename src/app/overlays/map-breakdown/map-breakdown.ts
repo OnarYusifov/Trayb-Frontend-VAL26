@@ -14,6 +14,7 @@ import { TranslateKeys } from "../../services/i18nHelper";
 import { Config } from "../../shared/config";
 import { TranslatePipe } from "@ngx-translate/core";
 import { DataModelService } from "../../services/dataModel.service";
+import { ISponsorInfo, ITournamentInfo } from "../../services/Types";
 
 @Component({
   selector: "app-map-breakdown",
@@ -166,13 +167,15 @@ export class MapBreakdown implements OnInit, OnDestroy {
     this.roundsPlayed = this.statsData.rounds.length;
 
     this.http
-      .get<{ leftTeam: AuthTeam; rightTeam: AuthTeam; higherScore: 0 | 1 }>(
+      .get<{ leftTeam: AuthTeam; rightTeam: AuthTeam; higherScore: 0 | 1; tournamentInfo?: ITournamentInfo; sponsorInfo?: ISponsorInfo }>(
         `${this.config.extrasEndpoint}/getTeamInfoForCode`,
         {
           params: { groupCode },
         },
       )
-      .subscribe((data: { leftTeam: AuthTeam; rightTeam: AuthTeam; higherScore: 0 | 1 }) => {
+      .subscribe((data) => {
+        if (data.tournamentInfo) this.dataModel.setTournamentInfo(data.tournamentInfo);
+        if (data.sponsorInfo) this.dataModel.setSponsorInfo(data.sponsorInfo);
         this.processTeamInfo(data);
       });
   }

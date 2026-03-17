@@ -90,6 +90,14 @@ export interface ITimeoutCounter {
   right: number;
 }
 
+export interface IToastInfo {
+  active: boolean;
+  message: string;
+  duration: number | null;
+  eventLogoEnabled: boolean;
+  selectedTeam?: "left" | "right";
+}
+
 //#endregion
 //#region Tools
 
@@ -104,6 +112,7 @@ export interface IToolsData {
   watermarkInfo: IWatermarkInfo;
   playercamsInfo: IPlayercamsInfo;
   nameOverrides: INameOverrides;
+  toastInfo: IToastInfo;
 }
 
 export interface ISeriesInfo {

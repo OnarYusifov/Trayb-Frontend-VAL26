@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { SocketService } from "./SocketService";
-import { IMapbanSessionData, IMatchData } from "./Types";
+import { IMapbanSessionData, IMatchData, ISponsorInfo, ITournamentInfo } from "./Types";
 import { ActivatedRoute } from "@angular/router";
 import { Config } from "../shared/config";
 import { isEqual } from "lodash";
@@ -99,6 +99,17 @@ export class DataModelService {
   public minimalMode = signal(false);
   public hideAuxiliary = signal(false);
 
+  private _tournamentInfoOverride = signal<ITournamentInfo | null>(null);
+  private _sponsorInfoOverride = signal<ISponsorInfo | null>(null);
+
+  public setTournamentInfo(info: ITournamentInfo) {
+    this._tournamentInfoOverride.set(info);
+  }
+
+  public setSponsorInfo(info: ISponsorInfo) {
+    this._sponsorInfoOverride.set(info);
+  }
+
   public match = signal<IMatchData>(initialMatchData, { equal: () => false });
   public teams = computed(() => this.match().teams, { equal: () => false });
   public timeoutState = computed(() => this.match().timeoutState, {
@@ -116,9 +127,10 @@ export class DataModelService {
   });
   public seriesInfo = computed(() => this.match().tools.seriesInfo);
   public seedingInfo = computed(() => this.match().tools.seedingInfo);
-  public sponsorInfo = computed(() => this.match().tools.sponsorInfo);
+  public sponsorInfo = computed(() => this._sponsorInfoOverride() ?? this.match().tools.sponsorInfo);
   public watermarkInfo = computed(() => this.match().tools.watermarkInfo);
-  public tournamentInfo = computed(() => this.match().tools.tournamentInfo);
+  public tournamentInfo = computed(() => this._tournamentInfoOverride() ?? this.match().tools.tournamentInfo);
+  public toastInfo = computed(() => this.match().tools.toastInfo, { equal: () => false });
   public playercamsInfo = computed(() => this.match().tools.playercamsInfo, {
     equal: () => false,
   });
@@ -192,6 +204,13 @@ export const initialMatchData: IMatchData = {
     },
     playercamsInfo: { enable: false },
     nameOverrides: { overrides: [] },
+    toastInfo: {
+      active: false,
+      duration: 10000,
+      message: "",
+      eventLogoEnabled: true,
+      selectedTeam: undefined,
+    },
   },
   timeoutState: {
     techPause: false,

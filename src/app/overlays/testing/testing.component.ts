@@ -2,15 +2,17 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { MatchOverlayComponent } from "../match-overlay/match-overlay.component";
 import { DataModelService, initialMatchData } from "../../services/dataModel.service";
 import { IMatchData } from "../../services/Types";
+import { LiveToastComponent } from "../toast-overlay/toast-component";
 
 @Component({
   selector: "app-testing-new",
-  imports: [MatchOverlayComponent],
+  imports: [MatchOverlayComponent, LiveToastComponent],
   templateUrl: "./testing.component.html",
   styleUrl: "./testing.component.css",
 })
 export class TestingComponent implements OnInit {
   dataModel = inject(DataModelService);
+  private toastTimerRef?: ReturnType<typeof setTimeout>;
   match: IMatchData = initialMatchData;
 
   ngOnInit(): void {
@@ -88,6 +90,13 @@ export class TestingComponent implements OnInit {
           removeTricodes: false,
         },
         nameOverrides: { overrides: [] },
+        toastInfo: {
+          active: false,
+          duration: 10000,
+          message: "",
+          selectedTeam: "left",
+          eventLogoEnabled: true,
+        },
       },
       timeoutState: {
         techPause: false,
@@ -826,5 +835,43 @@ export class TestingComponent implements OnInit {
       ret.timeoutState.timeRemaining = 0;
       return ret;
     });
+  }
+
+  showToast() {
+    const currentlyActive = this.dataModel.match().tools.toastInfo.active;
+
+    if (currentlyActive) {
+      // Deactivate immediately (mimics pressing the hotkey again)
+      clearTimeout(this.toastTimerRef);
+      this.toastTimerRef = undefined;
+      this.dataModel.match.update((v) => {
+        const ret = v;
+        ret.tools.toastInfo.active = false;
+        return ret;
+      });
+    } else {
+      // Activate
+      this.dataModel.match.update((v) => {
+        const ret = v;
+        ret.tools.toastInfo.active = true;
+        ret.tools.toastInfo.message = "This is a live toast preview. Thanks for using Spectra!";
+        ret.tools.toastInfo.duration = null;
+        ret.tools.toastInfo.eventLogoEnabled = true;
+        return ret;
+      });
+
+      const duration = this.dataModel.match().tools.toastInfo.duration;
+      if (duration !== null) {
+        clearTimeout(this.toastTimerRef);
+        this.toastTimerRef = setTimeout(() => {
+          this.dataModel.match.update((v) => {
+            const ret = v;
+            ret.tools.toastInfo.active = false;
+            return ret;
+          });
+          this.toastTimerRef = undefined;
+        }, duration);
+      }
+    }
   }
 }

@@ -152,7 +152,7 @@
       </div>
       <!-- Sponsor area -->
       <div class="flex relative w-[295px] h-[485px] bg-[#111111] overflow-hidden items-center justify-center rounded-br-lg">
-        @if(dataModel.sponsorInfo().sponsors.length > 0 && dataModel.sponsorInfo().enabled) {
+        @if(dataModel.sponsorInfo().enabled) {
           @for (sponsor of dataModel.sponsorInfo().sponsors; track $index) {
             <img
               class="sponsor-img absolute w-62 object-contain"
