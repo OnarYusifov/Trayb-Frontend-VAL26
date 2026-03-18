@@ -124,7 +124,7 @@ export class EndroundBannerComponent {
           (spons.roundCeremonie.includes("thrifty") &&
             roundWonType == TranslateKeys.Endround_RoundThrifty)
         ) {
-          return sponsor;
+          return spons;
         }
       }
     }
