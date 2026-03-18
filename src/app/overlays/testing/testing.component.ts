@@ -260,7 +260,7 @@ export class TestingComponent implements OnInit {
               fullName: "FIVEbyFIVE#DEBUG",
               playerId: 0,
               isAlive: true,
-              agentInternal: "Wushu",
+              agentInternal: "Iris",
               isObserved: false,
               armorName: "Heavy",
               money: 2100,

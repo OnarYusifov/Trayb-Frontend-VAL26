@@ -582,6 +582,7 @@ export class TestingAgentSelectComponent implements OnInit {
     "Guide",
     "Gumshoe",
     "Hunter",
+    "Iris",
     "Killjoy",
     "Mage",
     "Nox",
