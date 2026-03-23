@@ -14,6 +14,7 @@ export interface IMatchData {
   switchRound: number;
   firstOtRound: number;
   attackersWon: boolean;
+  toastInfo: IToastInfo;
 }
 
 export interface ITeamData {
@@ -95,7 +96,7 @@ export interface IToastInfo {
   message: string;
   duration: number | null;
   eventLogoEnabled: boolean;
-  selectedTeam?: "left" | "right";
+  selectedTeam?: "left" | "right" | "none";
 }
 
 //#endregion
@@ -112,7 +113,6 @@ export interface IToolsData {
   watermarkInfo: IWatermarkInfo;
   playercamsInfo: IPlayercamsInfo;
   nameOverrides: INameOverrides;
-  toastInfo: IToastInfo;
 }
 
 export interface ISeriesInfo {

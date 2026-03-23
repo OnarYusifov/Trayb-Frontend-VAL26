@@ -1,4 +1,7 @@
-import { Component, inject, OnDestroy, signal, effect } from "@angular/core";
+import { Component, inject, OnDestroy, signal } from "@angular/core";
+import { toObservable } from "@angular/core/rxjs-interop";
+import { distinctUntilChanged, EMPTY, interval, switchMap } from "rxjs";
+import { Subscription } from "rxjs";
 import { DataModelService } from "../../../../services/dataModel.service";
 
 @Component({
@@ -11,30 +14,28 @@ export class SponsorBoxComponent implements OnDestroy {
   dataModel = inject(DataModelService);
 
   currentIndex = signal(0);
-  private intervalId?: number;
+  private sub?: Subscription;
 
   constructor() {
-    effect(() => {
-      const sponsorInfo = this.dataModel.sponsorInfo();
-
-      if (this.intervalId) {
-        clearInterval(this.intervalId);
-        this.intervalId = undefined;
-      }
-      this.currentIndex.set(0);
-
-      if (sponsorInfo.enabled && sponsorInfo.sponsors.length > 1) {
+    this.sub = toObservable(this.dataModel.sponsorInfo).pipe(
+      distinctUntilChanged((a, b) =>
+        a.enabled === b.enabled &&
+        a.duration === b.duration &&
+        a.sponsors.length === b.sponsors.length &&
+        a.sponsors.every((s, i) => s === b.sponsors[i])
+      ),
+      switchMap((sponsorInfo) => {
+        this.currentIndex.set(0);
+        if (!sponsorInfo.enabled || sponsorInfo.sponsors.length <= 1) return EMPTY;
         const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
-        this.intervalId = window.setInterval(() => {
-          this.currentIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
-        }, duration);
-      }
+        return interval(duration);
+      })
+    ).subscribe(() => {
+      this.currentIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
     });
   }
 
   ngOnDestroy(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    this.sub?.unsubscribe();
   }
 }
