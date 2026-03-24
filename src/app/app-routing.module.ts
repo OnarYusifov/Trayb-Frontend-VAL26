@@ -111,7 +111,7 @@ const routes: Routes = [
       import("./overlays/map-breakdown/map-breakdown").then((m) => m.MapBreakdown),
   },
   {
-    path: "live-toast",
+    path: "toast",
     loadComponent: () =>
       import("./overlays/toast-overlay/toast-component").then((m) => m.LiveToastComponent),
   },

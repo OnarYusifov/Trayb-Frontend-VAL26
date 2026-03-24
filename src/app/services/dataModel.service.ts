@@ -134,7 +134,7 @@ export class DataModelService {
   public tournamentInfo = computed(
     () => this._tournamentInfoOverride() ?? this.match().tools.tournamentInfo,
   );
-  public toastInfo = computed(() => this.match().tools.toastInfo, { equal: () => false });
+  public toastInfo = computed(() => this.match().toastInfo, { equal: () => false });
   public playercamsInfo = computed(() => this.match().tools.playercamsInfo, {
     equal: () => false,
   });
@@ -212,13 +212,13 @@ export const initialMatchData: IMatchData = {
       type: "disabled",
       sponsors: [],
     },
-    toastInfo: {
-      active: false,
-      duration: 10000,
-      message: "",
-      eventLogoEnabled: true,
-      selectedTeam: undefined,
-    },
+  },
+  toastInfo: {
+    active: false,
+    duration: 10000,
+    message: "",
+    eventLogoEnabled: true,
+    selectedTeam: undefined,
   },
   timeoutState: {
     techPause: false,
