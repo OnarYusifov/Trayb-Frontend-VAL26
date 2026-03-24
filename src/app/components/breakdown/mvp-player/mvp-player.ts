@@ -23,7 +23,7 @@ export class MvpPlayer implements OnInit {
   agentInternalName = "";
 
   ngOnInit() {
-    this.agentInternalName = AgentNameService.getAgentInternalName(this.player.agent.name!)!;
+    this.agentInternalName = AgentNameService.getAgentInternalName(this.player.agent.name ?? "");
   }
 
   getAgentRole(name: string): string {

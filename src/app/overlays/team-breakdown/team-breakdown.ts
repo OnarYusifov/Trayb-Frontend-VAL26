@@ -91,6 +91,9 @@ export class TeamBreakdown implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.stopPolling();
     this.routeSubscription?.unsubscribe();
+    if (this.sponsorIntervalId) {
+      clearInterval(this.sponsorIntervalId);
+    }
   }
 
   private startPolling(groupCode: string) {

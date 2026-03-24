@@ -185,7 +185,7 @@ export class MapBreakdown implements OnInit, OnDestroy {
       });
   }
 
-  processStatsDataFully() {
+  private processStatsDataFully() {
     this.leftTeam = this.statsData!.teams.find((team) => team.team_id === this.leftTeamName);
     this.rightTeam = this.statsData!.teams.find((team) => team.team_id === this.rightTeamName);
 
@@ -341,7 +341,7 @@ export class MapBreakdown implements OnInit, OnDestroy {
     );
   }
 
-  calculateFirstKills() {
+  private calculateFirstKills() {
     const fkById: Record<string, number> = {};
     this.statsData?.players.forEach((player) => {
       fkById[player.puuid] = 0;
