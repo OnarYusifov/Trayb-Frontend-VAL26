@@ -90,12 +90,12 @@ export class TestingAgentSelectComponent implements OnInit {
           type: "tournamentInfo",
           sponsors: [],
         },
-        toastInfo: {
-          active: false,
-          duration: 10000,
-          message: "",
-          eventLogoEnabled: true,
-        },
+      },
+      toastInfo: {
+        active: false,
+        duration: 10000,
+        message: "",
+        eventLogoEnabled: true,
       },
       timeoutState: {
         techPause: false,

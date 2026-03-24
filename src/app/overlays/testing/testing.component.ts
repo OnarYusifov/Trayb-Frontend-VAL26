@@ -93,13 +93,13 @@ export class TestingComponent implements OnInit {
           type: "tournamentInfo",
           sponsors: [],
         },
-        toastInfo: {
-          active: false,
-          duration: 10000,
-          message: "",
-          selectedTeam: "left",
-          eventLogoEnabled: true,
-        },
+      },
+      toastInfo: {
+        active: false,
+        duration: 10000,
+        message: "",
+        selectedTeam: "left",
+        eventLogoEnabled: true,
       },
       timeoutState: {
         techPause: false,
