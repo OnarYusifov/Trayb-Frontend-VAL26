@@ -62,7 +62,6 @@ export class TestingComponent implements OnInit {
           right: "Group B",
         },
         tournamentInfo: {
-          enabled: true,
           name: "",
           logoUrl: "",
           backdropUrl: "",
@@ -90,13 +89,17 @@ export class TestingComponent implements OnInit {
           removeTricodes: false,
         },
         nameOverrides: { overrides: [] },
-      },
-      toastInfo: {
-        active: false,
-        duration: 10000,
-        message: "",
-        selectedTeam: "left",
-        eventLogoEnabled: true,
+        roundWinBox: {
+          type: "tournamentInfo",
+          sponsors: [],
+        },
+        toastInfo: {
+          active: false,
+          duration: 10000,
+          message: "",
+          selectedTeam: "left",
+          eventLogoEnabled: true,
+        },
       },
       timeoutState: {
         techPause: false,

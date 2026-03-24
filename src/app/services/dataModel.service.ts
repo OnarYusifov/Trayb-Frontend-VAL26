@@ -127,13 +127,18 @@ export class DataModelService {
   });
   public seriesInfo = computed(() => this.match().tools.seriesInfo);
   public seedingInfo = computed(() => this.match().tools.seedingInfo);
-  public sponsorInfo = computed(() => this._sponsorInfoOverride() ?? this.match().tools.sponsorInfo);
+  public sponsorInfo = computed(
+    () => this._sponsorInfoOverride() ?? this.match().tools.sponsorInfo,
+  );
   public watermarkInfo = computed(() => this.match().tools.watermarkInfo);
-  public tournamentInfo = computed(() => this._tournamentInfoOverride() ?? this.match().tools.tournamentInfo);
+  public tournamentInfo = computed(
+    () => this._tournamentInfoOverride() ?? this.match().tools.tournamentInfo,
+  );
   public toastInfo = computed(() => this.match().toastInfo, { equal: () => false });
   public playercamsInfo = computed(() => this.match().tools.playercamsInfo, {
     equal: () => false,
   });
+  public readonly roundWinBox = computed(() => this.match().tools.roundWinBox);
 
   public mapban = signal<IMapbanSessionData>(initialMapbanData, { equal: () => false });
 }
@@ -179,7 +184,6 @@ export const initialMatchData: IMatchData = {
       right: "",
     },
     tournamentInfo: {
-      enabled: false,
       name: "",
       logoUrl: "",
       backdropUrl: "",
@@ -204,6 +208,10 @@ export const initialMatchData: IMatchData = {
     },
     playercamsInfo: { enable: false },
     nameOverrides: { overrides: [] },
+    roundWinBox: {
+      type: "disabled",
+      sponsors: [],
+    },
   },
   toastInfo: {
     active: false,

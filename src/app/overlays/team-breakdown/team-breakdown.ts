@@ -61,14 +61,16 @@ export class TeamBreakdown implements OnInit, OnDestroy {
       this.currentSponsorIndex.set(0);
 
       if (sponsorInfo.enabled && sponsorInfo.sponsors.length > 1) {
-        const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
+        const duration =
+          sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
         this.sponsorIntervalId = window.setInterval(() => {
-          this.currentSponsorIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
+          this.currentSponsorIndex.update(
+            (i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length,
+          );
         }, duration);
       }
     });
   }
-
 
   ngOnInit() {
     this.routeSubscription = this.route.queryParams.subscribe((params) => {
@@ -129,12 +131,15 @@ export class TeamBreakdown implements OnInit, OnDestroy {
     this.roundsPlayed = this.statsData.rounds.length;
 
     this.http
-      .get<{ leftTeam: AuthTeam; rightTeam: AuthTeam; higherScore: 0 | 1; tournamentInfo?: ITournamentInfo; sponsorInfo?: ISponsorInfo }>(
-        `${this.config.extrasEndpoint}/getTeamInfoForCode`,
-        {
-          params: { groupCode },
-        },
-      )
+      .get<{
+        leftTeam: AuthTeam;
+        rightTeam: AuthTeam;
+        higherScore: 0 | 1;
+        tournamentInfo?: ITournamentInfo;
+        sponsorInfo?: ISponsorInfo;
+      }>(`${this.config.extrasEndpoint}/getTeamInfoForCode`, {
+        params: { groupCode },
+      })
       .subscribe((data) => {
         if (data.tournamentInfo) this.dataModel.setTournamentInfo(data.tournamentInfo);
         if (data.sponsorInfo) this.dataModel.setSponsorInfo(data.sponsorInfo);

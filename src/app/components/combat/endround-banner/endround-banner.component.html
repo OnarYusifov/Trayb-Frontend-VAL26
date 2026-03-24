@@ -1,4 +1,4 @@
-@if (dataModel.tournamentInfo().enabled) {
+@if (dataModel.roundWinBox().type !== "disabled") {
   <div
     class="relative flex items-center justify-center"
     [class.hidden]="hide && !preload"
@@ -34,8 +34,8 @@
           class="absolute inset-0 z-0"
           style="mask: url(#endround-mask); -webkit-mask: url(#endround-mask)"
         >
-          @if (tournamentBackgroundUrl()) {
-            <img class="h-full w-full object-cover" [src]="tournamentBackgroundUrl()" />
+          @if (bannerBackgroundUrl()) {
+            <img class="h-full w-full object-cover" [src]="bannerBackgroundUrl()" />
           } @else {
             <div class="h-full w-full" [class]="waitingBackgroundClass()"></div>
           }
@@ -221,7 +221,7 @@
     <div class="absolute -top-8 left-1/2 z-20 -translate-x-1/2 transform">
       <img
         class="reveal-logo h-full w-[6vh] max-w-[6vh] opacity-0"
-        [src]="tournamentIconUrl()"
+        [src]="bannerTopIconUrl()"
         (load)="onImageLoad()"
       />
 

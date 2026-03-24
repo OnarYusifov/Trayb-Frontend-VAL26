@@ -137,18 +137,19 @@ export class TestingMapBreakdown implements OnInit, OnDestroy {
         sponsorInfo: {
           enabled: true,
           duration: 5000,
-          sponsors: [
-            "assets/misc/logo.webp",
-          ],
+          sponsors: ["assets/misc/logo.webp"],
         },
       },
     }));
 
     const sponsorInfo = this.dataModel.sponsorInfo();
     if (sponsorInfo.enabled && sponsorInfo.sponsors.length > 1) {
-      const duration = sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
+      const duration =
+        sponsorInfo.duration > 100 ? sponsorInfo.duration : sponsorInfo.duration * 1000;
       this.sponsorIntervalId = window.setInterval(() => {
-        this.currentSponsorIndex.update((i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length);
+        this.currentSponsorIndex.update(
+          (i) => (i + 1) % this.dataModel.sponsorInfo().sponsors.length,
+        );
       }, duration);
     }
   }
@@ -309,7 +310,18 @@ export class TestingMapBreakdown implements OnInit, OnDestroy {
   }
 
   private createMockPlayers(): StatsApiMatchPlayer[] {
-    const agents = ["Jett", "Phoenix", "Omen", "Sage", "Sova", "Reyna", "Killjoy", "Cypher", "Viper", "Raze"];
+    const agents = [
+      "Jett",
+      "Phoenix",
+      "Omen",
+      "Sage",
+      "Sova",
+      "Reyna",
+      "Killjoy",
+      "Cypher",
+      "Viper",
+      "Raze",
+    ];
     const players: StatsApiMatchPlayer[] = [];
 
     for (let i = 0; i < 10; i++) {
@@ -346,7 +358,11 @@ export class TestingMapBreakdown implements OnInit, OnDestroy {
         prefered_level_border: null,
         account_level: 250,
         session_playtime_in_ms: 2400000,
-        behavior: { afk_rounds: 0, friendly_fire: { incoming: 0, outgoing: 0 }, rounds_in_spawn: 0 },
+        behavior: {
+          afk_rounds: 0,
+          friendly_fire: { incoming: 0, outgoing: 0 },
+          rounds_in_spawn: 0,
+        },
         economy: {
           spent: { overall: 45000, average: 2045 },
           loadout_value: { overall: 52000, average: 2364 },
@@ -381,13 +397,15 @@ export class TestingMapBreakdown implements OnInit, OnDestroy {
         result: results[Math.floor(Math.random() * results.length)],
         ceremony: ceremonies[Math.floor(Math.random() * ceremonies.length)],
         winning_team: winningTeam,
-        plant: hasPlant ? {
-          round_time_in_ms: 45000,
-          site: "A",
-          location: { x: 100, y: 200 },
-          player: { puuid: "player-5", name: "Enemy1", tag: "1005", team: "Red" },
-          player_locations: [],
-        } : null,
+        plant: hasPlant
+          ? {
+              round_time_in_ms: 45000,
+              site: "A",
+              location: { x: 100, y: 200 },
+              player: { puuid: "player-5", name: "Enemy1", tag: "1005", team: "Red" },
+              player_locations: [],
+            }
+          : null,
         defuse: null,
         stats: [],
       });
