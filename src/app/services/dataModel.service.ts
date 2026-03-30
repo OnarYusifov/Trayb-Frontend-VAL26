@@ -216,6 +216,7 @@ export const initialMatchData: IMatchData = {
   toastInfo: {
     active: false,
     duration: 10000,
+    title: "",
     message: "",
     eventLogoEnabled: true,
     selectedTeam: undefined,

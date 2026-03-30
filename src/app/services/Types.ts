@@ -93,6 +93,7 @@ export interface ITimeoutCounter {
 
 export interface IToastInfo {
   active: boolean;
+  title: string;
   message: string;
   duration: number | null;
   eventLogoEnabled: boolean;

@@ -57,10 +57,24 @@
             class="vw-60 h-auto object-contain"
           />
         </div>
-        <div class="flex items-center justify-center overflow-hidden">
+        <div class="flex self-center flex-col gap-1 items-center justify-center overflow-hidden"
+        [class]="toastInfo().title==='' ? 'h-7/10' : 'h-8/10'"
+        >
+          @if(toastInfo().title !== '') {
+            <span
+              class="font-replica flex items-center justify-start text-3xl text-white"
+              [class]="toastInfo().eventLogoEnabled ? 'w-147.5' : 'w-174'"
+            >
+              {{ toastInfo().title }}
+            </span>
+          }
           <span
-            class="font-replica flex h-7/10 items-center justify-start text-2xl text-white"
-            [class]="toastInfo().eventLogoEnabled ? 'w-147.5' : 'w-174'"
+            class="font-replica flex items-center justify-start text-white"
+            [class]="
+              (toastInfo().eventLogoEnabled ? 'w-147.5' : 'w-174') +
+              ' ' +
+              (toastInfo().title === '' ? 'text-2xl' : 'text-xl')
+            "
           >
             {{ toastInfo().message }}
           </span>
