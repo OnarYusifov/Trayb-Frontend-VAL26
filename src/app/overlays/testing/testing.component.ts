@@ -860,6 +860,7 @@ export class TestingComponent implements OnInit {
         ret.toastInfo.active = true;
         ret.toastInfo.title = "";
         ret.toastInfo.message = "This is a live toast preview. Thanks for using Spectra!";
+        ret.toastInfo.selectedTeam = "left";
         ret.toastInfo.duration = null;
         ret.toastInfo.eventLogoEnabled = true;
         return ret;

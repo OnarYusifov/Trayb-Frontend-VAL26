@@ -97,7 +97,7 @@ export interface IToastInfo {
   message: string;
   duration: number | null;
   eventLogoEnabled: boolean;
-  selectedTeam?: "left" | "right" | "none";
+  selectedTeam: "left" | "right" | "none";
 }
 
 //#endregion

@@ -96,6 +96,7 @@ export class TestingAgentSelectComponent implements OnInit {
         duration: 10000,
         title: "",
         message: "",
+        selectedTeam: "none",
         eventLogoEnabled: true,
       },
       timeoutState: {

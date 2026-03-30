@@ -219,7 +219,7 @@ export const initialMatchData: IMatchData = {
     title: "",
     message: "",
     eventLogoEnabled: true,
-    selectedTeam: undefined,
+    selectedTeam: "none",
   },
   timeoutState: {
     techPause: false,
