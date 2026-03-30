@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TestingComponent } from "./overlays/testing/testing.component";
 import { AutoswitchComponent } from "./autoswitch/autoswitch.component";
-import { MapbanUiComponent } from "./overlays/mapban-overlay/mapban-overlay.component";
 import { MatchOverlayComponent } from "./overlays/match-overlay/match-overlay.component";
 import { AgentSelectOverlayComponent } from "./overlays/agent-select-overlay/agent-select-overlay.component";
 import { TestingAgentSelectComponent } from "./overlays/testing-agent-select/testing-agent-select.component";

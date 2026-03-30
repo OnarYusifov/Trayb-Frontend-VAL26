@@ -33,8 +33,8 @@ import { LiveToastComponent } from "../toast-overlay/toast-component";
     EndroundBannerComponent,
     TimeoutComponent,
     OneVersusOneComponent,
-    LiveToastComponent
-],
+    LiveToastComponent,
+  ],
   templateUrl: "./match-overlay.component.html",
   styleUrl: "./match-overlay.component.css",
 })
