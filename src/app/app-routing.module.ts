@@ -114,6 +114,13 @@ const routes: Routes = [
     loadComponent: () =>
       import("./overlays/toast-overlay/toast-component").then((m) => m.LiveToastComponent),
   },
+  {
+    path: "roundwinbox",
+    loadComponent: () =>
+      import("./components/combat/endround-banner/endround-banner.component").then(
+        (m) => m.EndroundBannerComponent,
+      ),
+  },
 ];
 
 @NgModule({
