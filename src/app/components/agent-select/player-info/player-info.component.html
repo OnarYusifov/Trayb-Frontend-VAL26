@@ -9,6 +9,7 @@
     [class.animate-switch]="animateSwitch"
     [class.animate-lock]="locked()"
     src="assets/agent-portraits/{{ agent() }}Portrait.webp"
+    alt=""
   />
 
   <div class="animate-style-early absolute bottom-3/100 left-1/2 z-4 w-1/4 -translate-x-1/2">
@@ -17,6 +18,7 @@
       [class.animate-switch]="animateSwitch"
       [class.animate-lock]="locked()"
       src="assets/roles/{{ getAgentRole(agent()) }}.webp"
+      alt=""
     />
   </div>
   <div
