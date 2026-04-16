@@ -14,6 +14,7 @@ export interface IMatchData {
   switchRound: number;
   firstOtRound: number;
   attackersWon: boolean;
+  agentSelectStartTime: number;
   toastInfo: IToastInfo;
 }
 
@@ -115,6 +116,7 @@ export interface IToolsData {
   playercamsInfo: IPlayercamsInfo;
   nameOverrides: INameOverrides;
   roundWinBox: IRoundWinBox;
+  agentSelectActive: boolean;
 }
 
 export interface ISeriesInfo {

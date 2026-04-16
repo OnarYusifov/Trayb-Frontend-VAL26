@@ -1,24 +1,40 @@
-import { Component, effect, input } from "@angular/core";
+import { Component, effect, input, inject, signal, AfterViewInit } from "@angular/core";
 import { AgentRoleService } from "../../../services/agentRole.service";
+import { DataModelService } from "../../../services/dataModel.service";
+import { AgentNameService } from "../../../services/agentName.service";
 
 @Component({
   selector: "app-agent-select-player-info",
   imports: [],
   templateUrl: "./player-info.component.html",
   styleUrl: "./player-info.component.css",
+  host: { '[style.--player-animation-delay-ms]': 'animationDelayMs()' },
 })
 export class AgentSelectPlayerInfoComponent {
+  readonly dataModel = inject(DataModelService);
+
+  coverAnimation = false;
+  reveal = false;
+
   agent = input<string>("");
   locked = input<boolean>(false);
   playerName = input<string>();
 
   color = input<string>();
   down = input<boolean>(false);
+  animationDelayMs = input<number>(0);
 
   previousAgent = "";
-  previousLock = false;
+  prevLocked = false;
   animateSwitch = false;
-  animateLock = false;
+  showLockPulse = signal(false);
+  
+  ngAfterViewInit(): void {
+    requestAnimationFrame(() => {
+      this.coverAnimation = true;
+      this.reveal = true;
+    });
+  }
 
   switchEffect = effect(() => {
     if (this.agent() !== this.previousAgent) {
@@ -31,7 +47,31 @@ export class AgentSelectPlayerInfoComponent {
     }
   });
 
+  lockEffect = effect(() => {
+    const currentLocked = this.locked();
+    if (currentLocked && !this.prevLocked) {
+      this.showLockPulse.set(false);
+      setTimeout(() => {
+        this.showLockPulse.set(true);
+      }, 0);
+    }
+
+    if (!currentLocked) {
+      this.showLockPulse.set(false);
+    }
+
+    this.prevLocked = currentLocked;
+  });
+
+  onLockPulseAnimationEnd(): void {
+    this.showLockPulse.set(false);
+  }
+
   getAgentRole(name: string): string {
     return AgentRoleService.getAgentRole(name);
   }
+  getAgentName(name: string): string {
+    return AgentNameService.getAgentName(name);
+  }
 }
+

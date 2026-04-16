@@ -150,6 +150,7 @@ export const initialMatchData: IMatchData = {
   isRunning: true,
   roundNumber: 0,
   roundPhase: "LOBBY",
+  agentSelectStartTime: 0,
   teams: [
     {
       teamName: "",
@@ -212,6 +213,7 @@ export const initialMatchData: IMatchData = {
       type: "disabled",
       sponsors: [],
     },
+    agentSelectActive: false,
   },
   toastInfo: {
     active: false,

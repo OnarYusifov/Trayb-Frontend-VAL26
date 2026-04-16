@@ -28,6 +28,7 @@ export class TestingComponent implements OnInit {
       firstOtRound: 25,
       attackersWon: false,
       showAliveKDA: true,
+      agentSelectStartTime: 0,
       tools: {
         seriesInfo: {
           needed: 3,
@@ -93,6 +94,7 @@ export class TestingComponent implements OnInit {
           type: "tournamentInfo",
           sponsors: [],
         },
+        agentSelectActive: false,
       },
       toastInfo: {
         active: false,
@@ -605,7 +607,7 @@ export class TestingComponent implements OnInit {
     });
   }
 
-  spikeTimer?: NodeJS.Timeout;
+  spikeTimer?: ReturnType<typeof setTimeout>;
 
   plantSpike() {
     this.dataModel.match.update((v) => {
@@ -815,7 +817,7 @@ export class TestingComponent implements OnInit {
   }
   //#endregion
 
-  timeoutTimerRef?: NodeJS.Timeout;
+  timeoutTimerRef?: ReturnType<typeof setInterval>;
   startTimeoutTimer() {
     this.timeoutTimerRef = setInterval(() => {
       this.dataModel.match.update((v) => {
