@@ -1,6 +1,6 @@
 <div
-  class="relative h-full w-full overflow-hidden bg-[#151515] border-gray-500 border-1 rounded-[5px]"
-  [class.reveal]="reveal"
+  class="relative h-full w-full overflow-hidden bg-[#151515] border-gray-500 border-1 rounded-[5px] [contain:layout_style_paint]"
+  [class.reveal]="reveal()"
 >
   <img class="absolute top-30 left-0 h-full w-full object-cover scale-260" src="assets/agent-portraits/{{ agent() }}Portrait.webp" />
   <img
@@ -47,6 +47,6 @@
   <div class="absolute size-60 left-1/2 -translate-x-1/2"
   [class.bg-agentselect-player-attacker]="color() === 'attacker'"
   [class.bg-agentselect-player-defender]="color() === 'defender'"
-  [class.coverAnimation]="coverAnimation"
+  [class.coverAnimation]="coverAnimation()"
   ></div>
 </div>

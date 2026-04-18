@@ -1,8 +1,10 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
+  NgZone,
   OnDestroy,
   QueryList,
   ViewChildren,
@@ -18,9 +20,11 @@ import { AgentSelectPlayerInfoComponent } from "../../components/agent-select/pl
   imports: [AgentSelectPlayerInfoComponent],
   templateUrl: "./agent-select-overlay.component.html",
   styleUrl: "./agent-select-overlay.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentSelectOverlayComponent implements AfterViewInit, OnDestroy {
   readonly dataModel = inject(DataModelService);
+  private readonly ngZone = inject(NgZone);
   private readonly agentSelectDurationMs = 95_000;
   private animationFrameId?: number;
   private readonly nowMs = signal(performance.now());
@@ -137,7 +141,9 @@ export class AgentSelectOverlayComponent implements AfterViewInit, OnDestroy {
       this.animationFrameId = requestAnimationFrame(tick);
     };
 
-    this.animationFrameId = requestAnimationFrame(tick);
+    this.ngZone.runOutsideAngular(() => {
+      this.animationFrameId = requestAnimationFrame(tick);
+    });
   }
 
   private fitTeamNameText(): void {

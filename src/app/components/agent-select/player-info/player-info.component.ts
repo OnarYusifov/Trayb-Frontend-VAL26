@@ -1,4 +1,4 @@
-import { Component, effect, input, inject, signal, AfterViewInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, effect, input, inject, signal, AfterViewInit } from "@angular/core";
 import { AgentRoleService } from "../../../services/agentRole.service";
 import { DataModelService } from "../../../services/dataModel.service";
 import { AgentNameService } from "../../../services/agentName.service";
@@ -8,13 +8,14 @@ import { AgentNameService } from "../../../services/agentName.service";
   imports: [],
   templateUrl: "./player-info.component.html",
   styleUrl: "./player-info.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[style.--player-animation-delay-ms]': 'animationDelayMs()' },
 })
 export class AgentSelectPlayerInfoComponent {
   readonly dataModel = inject(DataModelService);
 
-  coverAnimation = false;
-  reveal = false;
+  coverAnimation = signal(false);
+  reveal = signal(false);
 
   agent = input<string>("");
   locked = input<boolean>(false);
@@ -26,23 +27,23 @@ export class AgentSelectPlayerInfoComponent {
 
   previousAgent = "";
   prevLocked = false;
-  animateSwitch = false;
+  animateSwitch = signal(false);
   showLockPulse = signal(false);
   
   ngAfterViewInit(): void {
     requestAnimationFrame(() => {
-      this.coverAnimation = true;
-      this.reveal = true;
+      this.coverAnimation.set(true);
+      this.reveal.set(true);
     });
   }
 
   switchEffect = effect(() => {
     if (this.agent() !== this.previousAgent) {
       this.previousAgent = this.agent();
-      this.animateSwitch = true;
+      this.animateSwitch.set(true);
 
       setTimeout(() => {
-        this.animateSwitch = false;
+        this.animateSwitch.set(false);
       }, 100);
     }
   });
