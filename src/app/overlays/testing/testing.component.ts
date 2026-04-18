@@ -86,7 +86,7 @@ export class TestingComponent implements OnInit {
         },
         playercamsInfo: {
           enable: true,
-          enabledPlayers: ["FNC OO AA EE#1337", "nobii#DEBUG"],
+          enabledPlayers: [],
           removeTricodes: false,
         },
         nameOverrides: { overrides: [] },
@@ -115,7 +115,7 @@ export class TestingComponent implements OnInit {
           players: [
             {
               name: "MrFoxy",
-              fullName: "MrFoxy#prod",
+              fullName: "MrFoxy#DEBUG",
               playerId: 0,
               isAlive: true,
               agentInternal: "Stealth",
@@ -152,7 +152,7 @@ export class TestingComponent implements OnInit {
             },
             {
               name: "RedStone201",
-              fullName: "TTV RedStone201#uhhhh",
+              fullName: "TTV RedStone201#DEBUG",
               playerId: 0,
               isAlive: true,
               agentInternal: "Smonk",
