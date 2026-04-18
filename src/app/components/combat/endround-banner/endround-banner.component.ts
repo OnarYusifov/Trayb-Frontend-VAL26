@@ -147,7 +147,7 @@ export class EndroundBannerComponent {
       backdropTournament !== ""
     )
       return backdropTournament;
-    else return false;
+    else return "assets/misc/backdrop.png";
   });
 
   bannerTopIconUrl = computed(() => {
