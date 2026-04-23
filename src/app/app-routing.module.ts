@@ -93,6 +93,11 @@ const routes: Routes = [
       import("./overlays/mapban-overlay/mapban-overlay.component").then((m) => m.MapbanUiComponent),
   },
   {
+    path: "mapban-fs",
+    loadComponent: () =>
+      import("./overlays/mapban-fs-overlay/mapban-fs-overlay.component").then((m) => m.MapbanFsOverlayComponent),
+  },
+  {
     path: "playercams",
     loadComponent: () =>
       import("./components/combat/playercams/playercams.component").then(
