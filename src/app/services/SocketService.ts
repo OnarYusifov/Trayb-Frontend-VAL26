@@ -16,7 +16,11 @@ export class SocketService {
     return SocketService.instance;
   }
 
-  public connectMatch(socketEndpoint: string, groupCode: string): SocketService {
+  public connectMatch(
+    socketEndpoint: string,
+    groupCode: string,
+    overlayAccessToken = "",
+  ): SocketService {
     if (this.matchSocket && this.matchSocket.connected) {
       console.warn("SocketService Match is already connected. Reusing existing connection.");
       return this;
@@ -25,6 +29,7 @@ export class SocketService {
     this.matchSocket = io.connect(socketEndpoint, {
       autoConnect: true,
       reconnection: true,
+      auth: overlayAccessToken ? { token: overlayAccessToken } : undefined,
     });
 
     this.matchSocket.once("logon_success", () => {

@@ -22,7 +22,7 @@ export class MapbanFsOverlayComponent implements OnInit, AfterViewInit {
 
   data: IMapbanSessionData = {
     sessionIdentifier: "UNKNOWN",
-    organizationName: "ValoSpectra",
+    organizationName: "Trayb",
     isSupporter: false,
     teams: [
       { name: "", tricode: "", url: "" },

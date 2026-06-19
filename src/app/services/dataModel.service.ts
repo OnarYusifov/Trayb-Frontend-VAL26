@@ -41,7 +41,11 @@ export class DataModelService {
       console.error("No group code provided, cannot connect to match data");
     } else {
       SocketService.getInstance().subscribeMatch(this.onMatchUpdate.bind(this));
-      SocketService.getInstance().connectMatch(this.config.serverEndpoint, this.groupCode());
+      SocketService.getInstance().connectMatch(
+        this.config.serverEndpoint,
+        this.groupCode(),
+        this.config.overlayAccessToken,
+      );
     }
 
     if (this.sessionId() && this.sessionId().length > 0) {
@@ -201,9 +205,9 @@ export const initialMatchData: IMatchData = {
       duration: 5000,
       sponsors: [],
     },
-    // Disabling the watermark/setting a custom text without Spectra Plus is against the License terms and strictly forbidden
+    // Disabling the watermark/setting a custom text without Trayb Plus is against the License terms and strictly forbidden
     watermarkInfo: {
-      spectraWatermark: true,
+      traybWatermark: true,
       customTextEnabled: false,
       customText: "",
     },

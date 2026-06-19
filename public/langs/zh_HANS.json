@@ -15,7 +15,7 @@
   "mapinfo.live": "当前场次: {{map}}",
   "mapinfo.decider": "决胜场次: {{map}}",
   "mapinfo.next": "下一场: {{map}}",
-  "topinfo.watermark": "Powered by Spectra",
+  "topinfo.watermark": "Powered by Trayb",
   "topscore.round": "第 {{rounds}} 回合",
   "team.attacker": "攻方",
   "team.defender": "守方",

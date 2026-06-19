@@ -1,6 +1,9 @@
 {
-  "serverEndpoint": "https://na.valospectra.com:5200",
-  "redirectUrl": "https://valospectra.com",
+  "brandName": "Trayb",
+  "brandLogoUrl": "/assets/misc/icon.webp",
+  "serverEndpoint": "https://data.trayb.az",
+  "overlayAccessToken": "change-me",
+  "redirectUrl": "https://trayb.az",
   "sponsorImageUrls": ["/assets/misc/logo.webp"],
   "sponsorImageRotateSpeed": 5000,
   "attackerColorPrimary": "#fd4756",

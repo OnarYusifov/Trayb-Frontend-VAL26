@@ -80,7 +80,7 @@ export class TestingAgentSelectComponent implements OnInit {
         watermarkInfo: {
           customText: "",
           customTextEnabled: false,
-          spectraWatermark: true,
+          traybWatermark: true,
         },
         playercamsInfo: {
           enable: false,

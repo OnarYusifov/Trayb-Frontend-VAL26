@@ -1,10 +1,13 @@
 export class Config {
-  serverEndpoint = "http://localhost:5200";
-  redirectUrl = "https://valospectra.com";
+  brandName = "Trayb";
+  brandLogoUrl = "/assets/misc/icon.webp";
+  serverEndpoint = "https://data.trayb.az";
+  overlayAccessToken = "";
+  redirectUrl = "https://trayb.az";
   sponsorImageUrls: string[] = [];
   sponsorImageRotateSpeed = 5000; // in milliseconds
 
-  mapbanEndpoint = "https://mapban-socket.valospectra.com";
+  mapbanEndpoint = "https://mapban-socket.trayb.az";
   // mapbanEndpoint = "http://localhost:11201";
 
   attackerColorPrimary = "#fd4756";
@@ -15,10 +18,10 @@ export class Config {
   defenderColorSecondary = "#61eab6";
   defenderColorShieldCurrency = "#61eab6";
 
-  statsEndpoint = "https://stats.valospectra.com";
+  statsEndpoint = "https://stats.trayb.az";
   // statsEndpoint = "http://localhost:31000";
 
-  extrasEndpoint = "https://na-extras.valospectra.com";
+  extrasEndpoint = "https://extras.trayb.az";
   // extrasEndpoint = "http://localhost:5101";
 
   public constructor(init?: Partial<Config>) {

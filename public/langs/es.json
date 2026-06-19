@@ -15,7 +15,7 @@
   "mapinfo.live": "En vivo: {{map}}",
   "mapinfo.decider": "Desempate: {{map}}",
   "mapinfo.next": "Siguiente: {{map}}",
-  "topinfo.watermark": "Powered by Spectra",
+  "topinfo.watermark": "Powered by Trayb",
   "topscore.round": "RONDAS {{rounds}}",
   "team.attacker": "ATACANTES",
   "team.defender": "DEFENSORES",

@@ -144,7 +144,7 @@ export interface ISponsorInfo {
 }
 
 export interface IWatermarkInfo {
-  spectraWatermark: boolean;
+  traybWatermark: boolean;
   customTextEnabled: boolean;
   customText: string;
 }

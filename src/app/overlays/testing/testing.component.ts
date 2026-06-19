@@ -80,9 +80,9 @@ export class TestingComponent implements OnInit {
           sponsors: ["assets/misc/logo.webp", "assets/misc/icon.webp"],
         },
         watermarkInfo: {
-          customText: "SPECTRA INVITATIONAL: GRAND FINAL",
+          customText: "TRAYB INVITATIONAL: GRAND FINAL",
           customTextEnabled: true,
-          spectraWatermark: true,
+          traybWatermark: true,
         },
         playercamsInfo: {
           enable: true,
@@ -861,7 +861,7 @@ export class TestingComponent implements OnInit {
         const ret = v;
         ret.toastInfo.active = true;
         ret.toastInfo.title = "";
-        ret.toastInfo.message = "This is a live toast preview. Thanks for using Spectra!";
+        ret.toastInfo.message = "This is a live toast preview. Thanks for using Trayb!";
         ret.toastInfo.selectedTeam = "left";
         ret.toastInfo.duration = null;
         ret.toastInfo.eventLogoEnabled = true;

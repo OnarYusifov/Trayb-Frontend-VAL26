@@ -1,17 +1,16 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
-import { TranslatePipe } from "@ngx-translate/core";
 import { DataModelService } from "../../../../services/dataModel.service";
-import { TranslateKeys } from "../../../../services/i18nHelper";
+import { Config } from "../../../../shared/config";
 
 @Component({
   selector: "app-watermark",
-  imports: [TranslatePipe],
+  imports: [],
   templateUrl: "./watermark.component.html",
   styleUrl: "./watermark.component.css",
 })
 export class WatermarkComponent implements OnInit {
   dataModel = inject(DataModelService);
-  TranslateKeys = TranslateKeys;
+  config = inject(Config);
 
   currentRotationIndex = signal(0);
 

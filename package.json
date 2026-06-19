@@ -1,9 +1,9 @@
 {
-  "name": "spectra-frontend",
+  "name": "trayb-frontend",
   "version": "0.1.3",
   "author": {
     "name": "Purple Shark UG (haftungsbeschränkt), nobii",
-    "url": "https://valospectra.com"
+    "url": "https://trayb.az"
   },
   "scripts": {
     "ng": "ng",

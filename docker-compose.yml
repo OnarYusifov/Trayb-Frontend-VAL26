@@ -1,11 +1,15 @@
 ---
 services:
-  valo-spectra-frontend:
-    image: node:22-alpine
-    entrypoint: sh -c 'corepack enable && yarn run start-docker'
-    working_dir: /app
-    volumes:
-      - ./:/app
-      - /var/www/.angular
-    ports:
-      - "3000:80"
+  valo-trayb-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "80"
+    environment:
+      - BRAND_NAME=${BRAND_NAME:-Trayb}
+      - BRAND_LOGO_URL=${BRAND_LOGO_URL:-/assets/misc/icon.webp}
+      - SERVER_ENDPOINT=${SERVER_ENDPOINT:-https://data.trayb.az}
+      - OVERLAY_ACCESS_TOKEN=${OVERLAY_ACCESS_TOKEN}
+      - REDIRECT_URL=${REDIRECT_URL:-https://trayb.az}
+      - EXTRAS_ENDPOINT=${EXTRAS_ENDPOINT:-https://extras.trayb.az}

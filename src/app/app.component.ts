@@ -11,7 +11,7 @@ import { Config } from "./shared/config";
 export class AppComponent implements OnInit {
   private config = inject(Config);
 
-  title = "SpectraFrontend";
+  title = "TraybFrontend";
 
   ngOnInit(): void {
     document.documentElement.style.setProperty(
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
       "--attacker-color-shield-currency-rgb",
       this.hexToRgb(this.config.attackerColorShieldCurrency).join(", "),
     );
-    console.log("SpectraFrontend initialized, version 0.3.2");
+    console.log("TraybFrontend initialized, version 0.3.2");
   }
 
   hexToRgb(hex: string): number[] {

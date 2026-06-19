@@ -15,7 +15,7 @@
   "mapinfo.live": "Current: {{map}}",
   "mapinfo.decider": "Decider: {{map}}",
   "mapinfo.next": "Next: {{map}}",
-  "topinfo.watermark": "Powered by Spectra",
+  "topinfo.watermark": "Powered by Trayb",
   "topscore.round": "ROUND {{rounds}}",
   "topscore.overtime": "OVERTIME",
   "team.attacker": "ATTACKER",

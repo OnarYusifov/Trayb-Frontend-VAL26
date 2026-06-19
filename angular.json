@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SpectraFrontend": {
+    "TraybFrontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/spectra-frontend",
+            "outputPath": "dist/trayb-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -101,10 +101,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SpectraFrontend:build:production"
+              "buildTarget": "TraybFrontend:build:production"
             },
             "development": {
-              "buildTarget": "SpectraFrontend:build:development"
+              "buildTarget": "TraybFrontend:build:development"
             }
           },
           "defaultConfiguration": "development"

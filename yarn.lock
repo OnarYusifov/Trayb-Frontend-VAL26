@@ -7416,50 +7416,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spectra-frontend@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "spectra-frontend@workspace:."
-  dependencies:
-    "@angular/animations": "npm:^20.2.1"
-    "@angular/build": "npm:^20.2.0"
-    "@angular/cli": "npm:^20.2.0"
-    "@angular/common": "npm:^20.2.1"
-    "@angular/compiler": "npm:^20.2.1"
-    "@angular/compiler-cli": "npm:^20.2.1"
-    "@angular/core": "npm:^20.2.1"
-    "@angular/forms": "npm:^20.2.1"
-    "@angular/platform-browser": "npm:^20.2.1"
-    "@angular/platform-browser-dynamic": "npm:^20.2.1"
-    "@angular/router": "npm:^20.2.1"
-    "@ngx-translate/core": "npm:^17.0.0"
-    "@ngx-translate/http-loader": "npm:^17.0.0"
-    "@tailwindcss/postcss": "npm:^4.1.10"
-    "@types/jasmine": "npm:~5.1.7"
-    "@types/lodash": "npm:^4"
-    angular-eslint: "npm:20.2.0"
-    animejs: "npm:^4.0.2"
-    eslint: "npm:^9.28.0"
-    eslint-config-prettier: "npm:^9.1.0"
-    express: "npm:^4.21.2"
-    jasmine-core: "npm:^5.6.0"
-    karma: "npm:~6.4.4"
-    karma-chrome-launcher: "npm:~3.2.0"
-    karma-coverage: "npm:~2.2.1"
-    karma-jasmine: "npm:~5.1.0"
-    karma-jasmine-html-reporter: "npm:~2.1.0"
-    lodash: "npm:^4.17.21"
-    prettier: "npm:3.5.3"
-    prettier-plugin-tailwindcss: "npm:^0.6.14"
-    rxjs: "npm:~7.8.2"
-    socket.io-client: "npm:4.8.1"
-    tailwindcss: "npm:^4.1.10"
-    tslib: "npm:^2.8.1"
-    typescript: "npm:~5.8.3"
-    typescript-eslint: "npm:^8.33.1"
-    zone.js: "npm:^0.15.0"
-  languageName: unknown
-  linkType: soft
-
 "ssri@npm:^12.0.0":
   version: 12.0.0
   resolution: "ssri@npm:12.0.0"
@@ -7680,6 +7636,50 @@ __metadata:
   checksum: 10c0/93937279934bd66cc3270016dd8d0afec14fb7c94a05c72dc57321f8bd1fa97e5bea6d1f7c89e728d077ca31ea125b78320a616a6c6cd0e6b9cb94cb864381c1
   languageName: node
   linkType: hard
+
+"trayb-frontend@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "trayb-frontend@workspace:."
+  dependencies:
+    "@angular/animations": "npm:^20.2.1"
+    "@angular/build": "npm:^20.2.0"
+    "@angular/cli": "npm:^20.2.0"
+    "@angular/common": "npm:^20.2.1"
+    "@angular/compiler": "npm:^20.2.1"
+    "@angular/compiler-cli": "npm:^20.2.1"
+    "@angular/core": "npm:^20.2.1"
+    "@angular/forms": "npm:^20.2.1"
+    "@angular/platform-browser": "npm:^20.2.1"
+    "@angular/platform-browser-dynamic": "npm:^20.2.1"
+    "@angular/router": "npm:^20.2.1"
+    "@ngx-translate/core": "npm:^17.0.0"
+    "@ngx-translate/http-loader": "npm:^17.0.0"
+    "@tailwindcss/postcss": "npm:^4.1.10"
+    "@types/jasmine": "npm:~5.1.7"
+    "@types/lodash": "npm:^4"
+    angular-eslint: "npm:20.2.0"
+    animejs: "npm:^4.0.2"
+    eslint: "npm:^9.28.0"
+    eslint-config-prettier: "npm:^9.1.0"
+    express: "npm:^4.21.2"
+    jasmine-core: "npm:^5.6.0"
+    karma: "npm:~6.4.4"
+    karma-chrome-launcher: "npm:~3.2.0"
+    karma-coverage: "npm:~2.2.1"
+    karma-jasmine: "npm:~5.1.0"
+    karma-jasmine-html-reporter: "npm:~2.1.0"
+    lodash: "npm:^4.17.21"
+    prettier: "npm:3.5.3"
+    prettier-plugin-tailwindcss: "npm:^0.6.14"
+    rxjs: "npm:~7.8.2"
+    socket.io-client: "npm:4.8.1"
+    tailwindcss: "npm:^4.1.10"
+    tslib: "npm:^2.8.1"
+    typescript: "npm:~5.8.3"
+    typescript-eslint: "npm:^8.33.1"
+    zone.js: "npm:^0.15.0"
+  languageName: unknown
+  linkType: soft
 
 "ts-api-utils@npm:^2.1.0":
   version: 2.1.0
