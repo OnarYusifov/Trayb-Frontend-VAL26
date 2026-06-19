@@ -2,6 +2,7 @@
 set -eu
 
 CONFIG_PATH="/usr/share/nginx/html/assets/config/config.json"
+SPONSOR_IMAGE_URLS_JSON=${SPONSOR_IMAGE_URLS:-[\"/assets/misc/logo.webp\"]}
 
 cat > "$CONFIG_PATH" <<EOF
 {
@@ -10,7 +11,7 @@ cat > "$CONFIG_PATH" <<EOF
   "serverEndpoint": "${SERVER_ENDPOINT:-https://data.trayb.az}",
   "overlayAccessToken": "${OVERLAY_ACCESS_TOKEN:-}",
   "redirectUrl": "${REDIRECT_URL:-https://trayb.az}",
-  "sponsorImageUrls": ${SPONSOR_IMAGE_URLS:-["/assets/misc/logo.webp"]},
+  "sponsorImageUrls": ${SPONSOR_IMAGE_URLS_JSON},
   "sponsorImageRotateSpeed": ${SPONSOR_IMAGE_ROTATE_SPEED:-5000},
   "attackerColorPrimary": "${ATTACKER_COLOR_PRIMARY:-#fd4756}",
   "attackerColorSecondary": "${ATTACKER_COLOR_SECONDARY:-#ff4557}",
